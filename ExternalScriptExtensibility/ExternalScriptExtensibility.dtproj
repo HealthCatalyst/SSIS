@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">HC2039</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAlFrfGfuDB0G+FS4CZqVTeAAAAAACAAAAAAADZgAAwAAAABAAAAD4h/08bT8HPPrP0xF4OEtSAAAAAASAAACgAAAAEAAAANTppT6suZkiXH26sYTgBy2IAAAAX5Qh+7jfSWxySlp4YyMivFFMgH6K+BQ2UJVQ+q+xuHnmzD4C//PHnRqaTWtNYeChCmf64HPXekS5Uom5oWqcBCeGphERLhbZb7VkMIWfDS6VuANPdcvY/EJGifvUXXVvZSBqa2NiuGNMYx1JVwrDMsAocrmwrTWWOLsGrUY7UN30cVChL2Zp7xQAAABb4diHC9/g//+7+0wAcV4cLk83mw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAdJJA4TsC2EqtmfCluIHiGAAAAAACAAAAAAADZgAAwAAAABAAAABbJSRbR1mjjFApyl7Ro1pcAAAAAASAAACgAAAAEAAAAMr0FNSluT3b4r1ZG59FU82IAAAAosFTjGgIzTRwV0gxHJS3vNk8DdgBdCdw+ZdcZ9ogSBKPQ5Mgj2tjNkHanx6bB9aeI9UB62rpiiusemTRh62GMtmth8OMOF2XPzIIX2EW36AmcHDbCPntogPJ0rZmtxuNoGpw7Nw6Zzsm+fFhl8sa3c+X3qXJCmNiRNotGwW2Pgs9w83hiSrXbBQAAADpIskxC0K2q3xkvs9Gmr6X9hUHkQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -42,10 +42,10 @@
                 <SSIS:Property SSIS:Name="Name">ExternalScriptExecution</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">88</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">117</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{0092C8FB-E4C2-43BE-A6DF-8641F7E4F54A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{5E5A8618-BE94-4A4F-8FFC-0DB227CE0155}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -90,7 +90,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">C:\StagingDirectory</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">C:\</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -215,7 +215,13 @@
         <ConnectionSecurityMappings />
         <DatabaseStorageLocations />
         <TargetServerVersion>SQLServer2012</TargetServerVersion>
-        <ParameterConfigurationValues />
+        <ParameterConfigurationValues>
+          <ConfigurationSetting>
+            <Id>LastModifiedTime</Id>
+            <Name>LastModifiedTime</Name>
+            <Value xsi:type="xsd:dateTime">2016-10-24T21:41:50.117271Z</Value>
+          </ConfigurationSetting>
+        </ParameterConfigurationValues>
       </Options>
     </Configuration>
   </Configurations>
