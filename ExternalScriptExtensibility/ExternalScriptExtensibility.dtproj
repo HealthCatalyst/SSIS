@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">HC2039</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAdJJA4TsC2EqtmfCluIHiGAAAAAACAAAAAAADZgAAwAAAABAAAABbJSRbR1mjjFApyl7Ro1pcAAAAAASAAACgAAAAEAAAAMr0FNSluT3b4r1ZG59FU82IAAAAosFTjGgIzTRwV0gxHJS3vNk8DdgBdCdw+ZdcZ9ogSBKPQ5Mgj2tjNkHanx6bB9aeI9UB62rpiiusemTRh62GMtmth8OMOF2XPzIIX2EW36AmcHDbCPntogPJ0rZmtxuNoGpw7Nw6Zzsm+fFhl8sa3c+X3qXJCmNiRNotGwW2Pgs9w83hiSrXbBQAAADpIskxC0K2q3xkvs9Gmr6X9hUHkQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAdJJA4TsC2EqtmfCluIHiGAAAAAACAAAAAAADZgAAwAAAABAAAAD+QbXLIKLsYydYpduehVCsAAAAAASAAACgAAAAEAAAAEIugY3MHc+03j+XvpOvUKGIAAAAHcToHXJ40SQdeu+4+ZfViDsH9yzm2qYVJbM1kA5FEnzcLTKYznBd280xziYSy/idhU1wO2CDs4CUfe+txsJ6gkFf722dxgIO2U2K+XnjoFApws+hDfltyaTQ8HxCp7sfdE7p8JHX02VJ1emHp5t+bjnshWReDYQnTBnww6bNDOcdfAg2VS4fuxQAAADyZUwHF+algj0/htJxtV7Vfz1mXg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -42,10 +42,10 @@
                 <SSIS:Property SSIS:Name="Name">ExternalScriptExecution</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">117</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">129</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{5E5A8618-BE94-4A4F-8FFC-0DB227CE0155}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{F88D066A-529A-4763-9FAA-492A98D5A797}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -119,7 +119,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Data Source=localhost;Initial Catalog=EDWAdmin;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=localhost;Initial Catalog=EDWAdmin32;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -134,7 +134,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">EDWAdmin</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">EDWAdmin32</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
