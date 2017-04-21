@@ -1,9 +1,9 @@
 # Machine Learning :: R Extensibility Instructions
 
 - [Initial Steps](#initial-steps)
-- [Repeatable Steps For Each Data Mart](repeatable-steps-for-each-data-mart)
-- [Repeatable Steps For Each Destination Entity](repeatable-steps-for-each-destination-entity)
-- [Sample Seed Scripts](sample-seed-scripts)
+- [Repeatable Steps For Each Data Mart](#repeatable-steps-for-each-data-mart)
+- [Repeatable Steps For Each Destination Entity](#repeatable-steps-for-each-destination-entity)
+- [Sample Seed Scripts](#sample-seed-scripts)
  
 This document instructs the user how to inject their designated R scripts into the Catalyst loaders. It begins by installing the required SSIS package and defining new system level attributes. It continues by injecting the new SSIS package into the designated loader step. It concludes by defining the necessary variables for each destination entity.
 
