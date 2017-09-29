@@ -11,17 +11,13 @@ This document instructs the user how to inject their designated R scripts, serve
  
 ## Initial Steps
 
-1. Establish local folder on ETL server.
-    a. Configure permissions to allow EDW loader account to read, write, and execute
-2. Install ExternalScriptExtensibility ISPAC on ETL server
+1. Install ExternalScriptExtensibility ISPAC on ETL server
     a. Locate inside folder `\SSISDB\CatalsytExtensibility\`
     b. Verify permission to allow EDW loader account to read and execute
-3. Seed new attribute names into EDWAdmin.CatalystAdmin.AttributeBASE
+2. Seed new attribute names into EDWAdmin.CatalystAdmin.AttributeBASE
     – **fabric.machinelearning.server**
     – **fabric.machinelearning.sourceentity**
     – **fabric.machinelearning.bindingscript**
-4. Seed new system attribute value into EDWAdmin.CatalystAdminObjectAttributeBASE
-    - **fabric.machinelearning.server**: `http://datsci01.hqcatalyst.local:8080`
 
 ## Repeatable Steps For Each Datamart
 
@@ -43,6 +39,7 @@ This document instructs the user how to inject their designated R scripts, serve
 1.  Seed new destination entity attribute values into EDWAdmin.CatalystAdmin.ObjectAttributeBASE
     – **fabric.machinelearning.sourceentity**: SAM.Sample.SampleEntity
     – **fabric.machinelearning.bindingscript**: jobs/healthcareaitest.R
+    - **fabric.machinelearning.server**: `http://datsci01.hqcatalyst.local:8080`
 2.  Configure dependency based on need
  
 ## Sample Seed Scripts
@@ -66,12 +63,15 @@ INSERT INTO CatalystAdmin.ETLEngineConfigurationBASE (ExtensionPointNM, Datamart
 VALUES ('OnPostStageToProdLoad', [DataMartID], '\SSISDB\CatalystExtensibility\ExternalScriptExtensibility\ExternalScriptExecutionREST.dtsx', 1, 'Health Catalyst', 0, 0, 1, 1, 'BatchID, TableID', 1)
 ```
 
-### EDWAdmin.CatalystAdmin.ETLEngineConfigurationBASE
+### EDWAdmin.CatalystAdmin.ObjectAttributeBASE
 
 ```sql
 INSERT INTO CatalystAdmin.ObjectAttributeBASE (ObjectID,ObjectTypeCD,AttributeNM,AttributeTypeCD,AttributeValueTXT)
-VALUES (0,'System','fabric.machinelearning.server','string','[URI]')
+VALUES ([TableID],'Table','fabric.machinelearning.server','string','[URI]')
 
 INSERT INTO CatalystAdmin.ObjectAttributeBASE (ObjectID,ObjectTypeCD,AttributeNM,AttributeTypeCD,AttributeValueTXT)
-VALUES ([TableID],'Table','fabric.machinelearning.sourceentity','string', [DatabaseNM.SchemaNM.ViewNM])
+VALUES ([TableID],'Table','fabric.machinelearning.sourceentity','string', '[DatabaseNM.SchemaNM.ViewNM]')
+
+INSERT INTO CatalystAdmin.ObjectAttributeBASE (ObjectID,ObjectTypeCD,AttributeNM,AttributeTypeCD,AttributeValueTXT)
+VALUES ([TableID],'Table','fabric.machinelearning.bindingscript','string', '[Script.R]')
 ```
