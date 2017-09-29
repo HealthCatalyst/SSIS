@@ -20,8 +20,6 @@ This document instructs the user how to inject their designated R scripts into t
 	– ExternalScriptType
 	– ExternalScriptSourceEntity
 	– ExternalRScript
-4.	Seed new system attribute value into `EDWAdmin.CatalystAdminObjectAttributeBASE`
-	– RInterpreterPath: `C:\Program Files\R\R-3.3.1\Rscript.exe`
 
 ## Repeatable Steps For Each Data Mart
 
@@ -44,6 +42,7 @@ This document instructs the user how to inject their designated R scripts into t
     – **ExternalScriptType**: “R”
     – **ExternalScriptSourceEntity**: “SAM.Sample.SampleEntity”
     – **ExternalRScript**: {content of R script file with qualified single quotes}
+    - **RInterpreterPath**: `C:\Program Files\R\R-3.3.1\Rscript.exe`
 2.  Configure dependency based on need
 
 ## Sample Seed Scripts
@@ -74,7 +73,7 @@ VALUES ('OnPostStageToProdLoad', [DatamartID of SAM], '\SSISDB\CatalystExtensibi
 ### EDWAdmin.CatalystAdmin.ObjectAttributeBASE
 ```sql
 INSERT INTO CatalystAdmin.ObjectAttributeBASE (ObjectID,ObjectTypeCD,AttributeNM,AttributeTypeCD,AttributeValueTXT)
-VALUES (0,'System','RInterpreterPath','string','C:\Program Files\R\R-3.3.1\bin\Rscript.exe')
+VALUES ([TableID],'Table','RInterpreterPath','string','C:\Program Files\R\R-3.3.1\bin\Rscript.exe')
 
 INSERT INTO CatalystAdmin.ObjectAttributeBASE (ObjectID,ObjectTypeCD,AttributeNM,AttributeTypeCD,AttributeValueTXT)
 VALUES ([TableID],'Table','ExternalScriptType','string','R')
