@@ -1,40 +1,62 @@
 # SSIS
 
-## What is this
+These tools enable machine learning in the HC platform by setting up extensibility points that call out to R/Python scripts during ETLs.
 
-- Data flow process
-    + Pause the SAM by having it stop after an entity runs.
-    + Run the R script that makes predictions and populates a table.
-    + Resume the SAM.
-- Configuration for extensibility poits are stored in
-    + `ETLEngineConfig` (some configuration)
-    + `ObjectAttributeBase` (additional configuration)
+## Data Flow Process
+
+- A SAM ETL runs.
+- Pause the SAM by having it stop after a specific entity runs.
+- Run the R script that makes predictions and populates a table.
+- Resume the SAM ETL.
+
+## Extensibility Poits Configuration
+
+These are stored in two tables:
+
+- `ETLEngineConfig` (some configuration)
+- `ObjectAttributeBase` (additional configuration)
 
 ## Details
 
-The ExternalScriptExecution.dtsx runs as an extensibility after the OnPostTableLoad on the empty destination table. The empty destination table should have already been designed in SAMD with the appropriate columns and data types. The binding query for that empty destination table should execute a select statement from the source table where 1 = 2. For example, SELECT {columns with Aliases matching destination columns} FROM {DatabaseNM}.{SchemaNM}.{SourceTableNM} WHERE 1 = 2. This simple binding query creates a simple dependency upon the source table.
+The `ExternalScriptExecution.dtsx` runs as an extensibility after the `OnPostTableLoad` on the empty destination table. The empty destination table should have already been designed in SAMD with the appropriate columns and data types. The binding query for that empty destination table should execute a select statement from the source table where 1 = 2. For example:
 
-Once the destination table loads its empty binding, the OnPostTableLoad will trigger the ExternalScriptExecution. This script will execute the intended function on the intended external script (Python or R) if all the required Object Attributes are defined.
+```sql
+SELECT {columns with Aliases matching destination columns}
+FROM {DatabaseNM}.{SchemaNM}.{SourceTableNM}
+WHERE 1 = 2.
+```
 
-The require Object Attributes are as follows:
-ExternalRScript: System-level object attribute containing the HCRTools script
-ExternalPythonScript: System-level object attribute containing the HCPythonTools script
-RInterpreterPath: System-level local path of the RScript.exe interpreter
-PythonInterpreterPath: System-level local path of the Python interpreter
-ExternalScriptType: Table-level variable, "R" or "Python"
-ExternalScriptFunction: Table-level variable, function within script, i.e. "FindTrends"
-ExternalScriptSourceEntity: Table-level variable, source table from which to query
-ExternalScriptArguments: Table-level variable, space-delimited extra arguments for script function, i.e. "z2" "Test.txt"
+This simple binding query creates a simple dependency upon the source table.
+
+Once the destination table loads its empty binding, the `OnPostTableLoad` will trigger the `ExternalScriptExecution`. This script will execute the intended function on the intended external script (Python or R) if all the required Object Attributes are defined.
+
+### Required Object Attributes:
+
+- **ExternalRScript**: System-level object attribute containing the R script
+- **ExternalPythonScript**: System-level object attribute containing the Python script
+- **RInterpreterPath**: System-level local path of the `RScript.exe` interpreter
+- **PythonInterpreterPath**: System-level local path of the Python interpreter
+- **ExternalScriptType**: Table-level variable, `R` or `Python`
+- **ExternalScriptFunction**: Table-level variable, function within script. For example: `FindTrends`
+- **ExternalScriptSourceEntity**: Table-level variable, source table from which to query
+- **ExternalScriptArguments**: Table-level variable, space-delimited extra arguments for script function, i.e. "z2" "Test.txt"
 
 If any of these attributes are not defined, the package will exit, logging the reason in EDW Console.
 
 ## Glossary
 
-- Batches
-    + Scheduled in EDW Console (web portal) by TD.
-- **Icepack File**
-    + SSIS package installer
+- **SSIS**
+    + SQL Server Integration Services.
+- **SSMS**
+    + SQL Server Management Studio. Where work happens.
+- **EDW Console**
+    + Catalyst web app for viewing and configuring ETLs.
+    + Errors are surfaced here.
+- **Batches**
+    + ETLs scheduled in EDW Console (web portal) by a TD.
+- **SSIS packages**
+    + are found in: SSMS > `Integration Services Catalogs` > `CatalystExtensibility`
+- **ISPAC File**
+    + The project deployment file is a self-contained unit of deployment that includes only the essential information about the packages and parameters in the project. [reference](https://docs.microsoft.com/en-us/sql/integration-services/packages/deploy-integration-services-ssis-projects-and-packages)
 - **DTX File**
-    + These are the files that are installed into SSMS.
-- SSIS packages are found in:
-    + SSMS > `Integration Services Catalogs` > `CatalystExtensibility`
+    + The actual SSIS package files that are installed into SSIS via SSMS.
