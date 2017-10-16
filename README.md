@@ -4,17 +4,17 @@ These tools enable machine learning in the HC platform by setting up extensibili
 
 ## Data Flow Process
 
-- A SAM ETL runs.
-- Pause the SAM by having it stop after a specific entity runs.
-- Run the R script that makes predictions and populates a table.
-- Resume the SAM ETL.
+1. A SAM Batch ETL runs.
+2. The SAM pauses ETLs after a specific entity runs.
+3. The R/Python script runs making predictions and populates a table.
+4. The SAM resumes ETLs.
 
 ## Extensibility Poits Configuration
 
-These are stored in two tables:
+Configuration for extensibility points are stored in two tables:
 
-- `ETLEngineConfig` (some configuration)
-- `ObjectAttributeBase` (additional configuration)
+- `ETLEngineConfig` (some generic configuration)
+- `ObjectAttributeBase` (additional detailed configuration)
 
 ## Details
 
@@ -26,9 +26,9 @@ FROM {DatabaseNM}.{SchemaNM}.{SourceTableNM}
 WHERE 1 = 2.
 ```
 
-This simple binding query creates a simple dependency upon the source table.
+This simple binding query creates a dependency upon the source table.
 
-Once the destination table loads its empty binding, the `OnPostTableLoad` will trigger the `ExternalScriptExecution`. This script will execute the intended function on the intended external script (Python or R) if all the required Object Attributes are defined.
+Once the destination table loads its empty binding, the `OnPostTableLoad` event will trigger the `ExternalScriptExecution`. This script will execute the intended function on the intended external script (Python or R) if all the required Object Attributes are defined correctly.
 
 ### Required Object Attributes:
 
@@ -41,7 +41,7 @@ Once the destination table loads its empty binding, the `OnPostTableLoad` will t
 - **ExternalScriptSourceEntity**: Table-level variable, source table from which to query
 - **ExternalScriptArguments**: Table-level variable, space-delimited extra arguments for script function, i.e. "z2" "Test.txt"
 
-If any of these attributes are not defined, the package will exit, logging the reason in EDW Console.
+If any of these attributes are not defined, the package will exit and log the reason in EDW Console.
 
 ## Glossary
 
