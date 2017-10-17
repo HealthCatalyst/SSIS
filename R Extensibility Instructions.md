@@ -23,28 +23,79 @@ Before installing the extensitibility points, it verify that the user R/Python s
 6. Delete the logs that were created.
 7. Proceed to the extensibility point setup below.
 
+## TODO
+
+- figure out what that field format is
+- run stored proc and find out what type it returns
+- debug nodes
+- check variables
+- add breakpoint
+- look at V1 loader
+
 ### Things to Look For
 
 - Verify that the R/Python interpreter is installed correctly.
 - Verify that all needed libraries are installed, including healthcareai.
 
+## ISPAC Installation
+
+The following steps are for the .ispac installation wizard.
+
+1. [Download](https://github.com/HealthCatalyst/SSIS/blob/master/ExternalScriptExtensibility.ispac) and unzip the .ispac file
+2. Select **Project Deployment File**
+![](images/SSIS_installation/SSIS_installation_1_project_deploy.png)
+3. Select the desired server
+![](images/SSIS_installation/SSIS_installation_2_select_database_server.png)
+4. Create the folder `CatalsytExtensibility` if it does not exist on the database server
+![](images/SSIS_installation/SSIS_installation_3_locate_or_create_folder.png)
+5. Deploy and ensure that all results passed.
+![](images/SSIS_installation/SSIS_installation_4_passing_resutls.png)
+6. Open SSMS and verify that these pacakges were installed:
+![](images/SSIS_installation/SSIS_installation_5_verify_SSMS.png)
+
 ## Extensibility Point Setup
 
-1. Establish local folder on the ETL server.
-    1. Configure permissions to allow EDW loader account to read, write, and execute.
-        - **HOW IS THIS DONE?**
-2. If not previously installed, install the ExternalScriptExtensibility ISPAC on the ETL server. To find existing extensibility points look in: SSMS > Integration Services Catalog > SSISDB > CatalystExtensions > Projects
+1. Establish local folder on the ETL server. **WHAT IS THIS USED FOR?**
+    1. Configure permissions to allow the `EDW loader` user account to read, write, and execute in this directory.
+
+2. If not previously installed, install the ExternalScriptExtensibility.ispac on the ETL server. To find existing extensibility points look in: SSMS > Integration Services Catalog > SSISDB > CatalystExtensions > Projects
     1. Locate inside folder `\SSISDB\CatalsytExtensibility\`
-    2. Verify permission to allow EDW loader account to execute.
-        - **HOW IS THIS DONE?**
+    2. Verify permission to allow the `EDW loader` user account to execute.
     3. Configure `ExternalScriptExecution.dtsx` parameter called `StagingDirectory` with the local folder established in step 1.
-        - **HOW IS THIS DONE?**
-3. Seed new attribute names into `EDWAdmin.CatalystAdmin.AttributeBASE`
-    - **HOW IS THIS DONE?**
-    – RInterpreterPath
-    – ExternalScriptType
-    – ExternalScriptSourceEntity
-    – ExternalRScript
+
+3. Seed four new attribute (`RInterpreterPath`, `ExternalScriptType`, `ExternalScriptSourceEntity`, `ExternalRScript`) names into `EDWAdmin.CatalystAdmin.AttributeBASE`. This `AttributeBASE` table can be thought of as a set of keys where values of that key can be set for specific instances of an object elsewhere in `ObjectAttributeBASE`.
+
+    ```sql
+    IF NOT EXISTS
+        (SELECT * FROM EDWAdmin.CatalystAdmin.AttributeBASE WHERE AttributeNM = 'RInterpreterPath')
+    INSERT INTO EDWAdmin.CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC)
+        VALUES ('RInterpreterPath','Local path to RScript.exe')
+
+    IF NOT EXISTS
+        (SELECT * FROM EDWAdmin.CatalystAdmin.AttributeBASE WHERE AttributeNM = 'ExternalScriptType')
+    INSERT INTO EDWAdmin.CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC)
+        VALUES ('ExternalScriptType','Python or R')
+
+    IF NOT EXISTS
+        (SELECT * FROM EDWAdmin.CatalystAdmin.AttributeBASE WHERE AttributeNM = 'ExternalScriptSourceEntity')
+    INSERT INTO EDWAdmin.CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC)
+        VALUES ('ExternalScriptSourceEntity','Source entity from which to calculate predictions')
+
+    IF NOT EXISTS
+        (SELECT * FROM EDWAdmin.CatalystAdmin.AttributeBASE WHERE AttributeNM = 'ExternalRScript')
+    INSERT INTO EDWAdmin.CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC)
+        VALUES ('ExternalRScript','R script that contains functions')
+    ```
+
+4. Verify that the new Attribute name keys exist in EDWAdmin.
+
+    ```sql
+    SELECT [AttributeID]
+          ,[AttributeNM]
+          ,[AttributeDSC]
+      FROM [EDWAdmin].[CatalystAdmin].[AttributeBASE]
+    WHERE AttributeNM IN ('RInterpreterPath', 'ExternalScriptType', 'ExternalScriptSourceEntity', 'ExternalRScript')
+    ```
 
 ## Repeatable Steps For Each Data Mart
 
@@ -77,31 +128,7 @@ Seed `EDWAdmin.CatalystAdmin.ETLEngineConfigurationBASE` with these values:
 
 2.  Configure dependencies based on need
 
-## Seed Script Tempaltes
-
-### EDWAdmin.CatalystAdmin.AttributeBASE
-
-```sql
-IF NOT EXISTS
-    (SELECT * FROM CatalystAdmin.AttributeBASE WHERE AttributeNM = 'RInterpreterPath')
-INSERT INTO CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC)
-    VALUES ('RInterpreterPath','Local path to RScript.exe')
-
-IF NOT EXISTS
-    (SELECT * FROM CatalystAdmin.AttributeBASE WHERE AttributeNM = 'ExternalScriptType')
-INSERT INTO CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC)
-    VALUES ('ExternalScriptType','Python or R')
-
-IF NOT EXISTS
-    (SELECT * FROM CatalystAdmin.AttributeBASE WHERE AttributeNM = 'ExternalScriptSourceEntity')
-INSERT INTO CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC)
-    VALUES ('ExternalScriptSourceEntity','Source entity from which to calculate predictions')
-
-IF NOT EXISTS
-    (SELECT * FROM CatalystAdmin.AttributeBASE WHERE AttributeNM = 'ExternalRScript')
-INSERT INTO CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC)
-    VALUES ('ExternalRScript','HCRTools script that contains HC functions')
-```
+## Seed Script Templates
 
 ### EDWAdmin.CatalystAdmin.ETLEngineConfigurationBASE
 

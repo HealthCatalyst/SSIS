@@ -60,3 +60,7 @@ If any of these attributes are not defined, the package will exit and log the re
     + The project deployment file is a self-contained unit of deployment that includes only the essential information about the packages and parameters in the project. [reference](https://docs.microsoft.com/en-us/sql/integration-services/packages/deploy-integration-services-ssis-projects-and-packages)
 - **DTX File**
     + The actual SSIS package files that are installed into SSIS via SSMS.
+- **EDWAdmin.CatalystAdmin.AttributeBASE**
+    + A table that stores keys and descriptions that can be used to assign values to instances of objects.
+- **EDWAdmin.CatalystAdmin.ObjectAttributeBASE**
+    + A table that stores instances of key values for specific objects.
