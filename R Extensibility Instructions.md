@@ -11,6 +11,14 @@ This document instructs the user how to integrate their designated R/Python scri
 
 It begins by installing the required SSIS package and defining new system level attributes. It continues by injecting the new SSIS package into the designated loader step. It concludes by defining the necessary variables for each destination entity.
 
+## Overview
+
+This extensibilty point exists to solve the following problems/constraints:
+
+- Typically no file system access is given on the ETL machines. This is required to run an R/Python script with current infrastructure.
+- This extensibilty point takes an R/Python script stored in a field in the EDW, writes it to a file in the staging folder, executes that file with the correct interpreter, and cleans the file up.
+- The extensibilty point also coordinates bindings within SAMD so that predictions occur in the right order with other SAMs.
+
 ## ML Model Script Verification
 
 Before installing the extensitibility points, verify that the user's R/Python scripts run standalone on the desired machine.
@@ -116,33 +124,18 @@ The following SQL template needs only a single adjustemt of the *DataMartID* bef
 
 ```sql
 INSERT INTO EDWAdmin.CatalystAdmin.ETLEngineConfigurationBASE
-    (
-        ExtensionPointNM,
-        DatamartID,
-        SSISPackagePathOrSPToExecuteTXT,
-        IsSSISPackageFLG,
-        ExtensionOwnerNM,
-        RunInAsynchModeFLG,
-        Use32BitRuntimeFLG,
-        ExecutionOrderNBR,
-        ActiveFLG,
-        RequiredParametersTXT,
-        FailsBatchFLG
-    )
-VALUES
-    (
-        'OnPostStageToProdLoad',
-        <DATA_MART_ID>,
-        '\SSISDB\CatalystExtensibility\ExternalScriptExtensibility\ExternalScriptExecution.dtsx',
-        1,
-        'Health Catalyst',
-        0,
-        0,
-        1,
-        1,
-        'BatchID, TableID',
-        1
-    )
+(
+    ExtensionPointNM, DatamartID, SSISPackagePathOrSPToExecuteTXT, 
+    IsSSISPackageFLG, ExtensionOwnerNM, 
+    RunInAsynchModeFLG, Use32BitRuntimeFLG, 
+    ExecutionOrderNBR, ActiveFLG, RequiredParametersTXT, 
+    FailsBatchFLG
+) 
+VALUES 
+(
+    'OnPostStageToProdLoad', <DATA_MART_ID>, '\SSISDB\CatalystExtensibility\ExternalScriptExtensibility\ExternalScriptExecution.dtsx', 
+    1, 'Health Catalyst', 0, 0, 1, 1, 'BatchID, TableID', 1
+)
 ```
 
 Update your `DataMartID` and verify insertion using this SQL template:
