@@ -32,8 +32,8 @@ Once the destination table loads its empty binding, the `OnPostTableLoad` event 
 
 ### Required Object Attributes:
 
-- **ExternalRScript**: System-level object attribute containing the R script
-- **ExternalPythonScript**: System-level object attribute containing the Python script
+- **ExternalRScript**: System-level object attribute containing the R script. Warning: It's possible that this is table-level, depending on the version of the package.
+- **ExternalPythonScript**: System-level object attribute containing the Python script. Warning: It's possible that this is table-level, depending on the version of the package.
 - **RInterpreterPath**: System-level local path of the `RScript.exe` interpreter
 - **PythonInterpreterPath**: System-level local path of the Python interpreter
 - **ExternalScriptType**: Table-level variable, `R` or `Python`

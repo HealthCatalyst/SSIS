@@ -30,14 +30,17 @@ Due to the complexity of the extensibility process, **verifying this now avoids 
 - Verify that the R/Python interpreter is installed correctly.
 - Verify that all needed libraries are installed, including healthcareai.
 
-### Suggested Verification Process
+### Suggested Verification Process Before Installing Extensibility
 
 1. Verify the R/Python scripts run on the ETL Server. Run them with one of the following options:
     1. an IDE such as **RStudio**, **RGUI**, **Pycharm**, **Spyder**, etc.
     2. the command line using `RScript <YOUR_SCRIPT_NAME>` or `python <YOUR_SCRIPT_NAME>`
-2. Run the `helloWorld.R` example file.
-3. Verify that a log was created with a hello world note.
-4. Run the user script the same way.
+2. Run the example contained in `healthcareai::start_prod_logs.R`
+3. Verify that a log was created with the correct version of healthcareai printed in it.
+4. Run the user script the same way by:
+    1. Comment the line containing `catalyst_test_deploy_in_prod`.
+    2. Uncomment the line that says `source("myDeployScript.R")`
+    3. Replace `myDeployScript.R` with the name of of the user script.
 5. Verify that a log was created with output from the user script.
 6. Delete the logs that were created.
 7. At this point the underlying script and its associated environment and libraries have been verified. Proceed to the extensibility point setup below.
@@ -55,12 +58,12 @@ The following steps are for the .ispac installation wizard.
 ![](images/SSIS_installation/SSIS_installation_3_locate_or_create_folder.png)
 5. Deploy and ensure that all results passed.
 ![](images/SSIS_installation/SSIS_installation_4_passing_resutls.png)
-6. Open SSMS and verify that these pacakges were installed:
+6. Open SSMS and verify that these packages were installed:
 ![](images/SSIS_installation/SSIS_installation_5_verify_SSMS.png)
 
 ## Extensibility Point Configuration
 
-1. Establish local folder on the ETL server. <strong style='color: purple; background: orange; padding: 1em; font-size: 20px;'>WHAT IS THIS USED FOR?</strong>
+1. Establish local folder on the ETL server. This is the working directory that the user script will run in. Ideally, have the client DBA configure it as a shared folder that the HC engineer can
     1. Configure permissions to allow the `EDW loader` user account to read, write, and execute in this directory.
 
 2. If not previously installed, install the ExternalScriptExtensibility.ispac on the ETL server. To find existing extensibility points look in: SSMS > Integration Services Catalog > SSISDB > CatalystExtensions > Projects
@@ -195,6 +198,20 @@ SELECT * FROM CatalystAdmin.ObjectAttributeBASE WHERE ObjectID = <TableID>
 - In the R script on Windows paths must use forward slashes `/` because R interprets backslahses as escape characters.
 - In the R script there must be no single quotes. They must all be double `"` quotes. Single quotes are excaped in the SQL statement.
 
+## Suggested Verification Process After Installing Extensibility
+
+2. Trigger your extensibility to run the example contained in `healthcareai::start_prod_logs.R` by:
+    1. Changing the working directory to the location that the user script will run
+    2. Saving the example into the `ExternalRScript` in `EDWAdmin.CatalystAdmin.AttributeBASE`
+3. Verify that a log was created with the correct version of healthcareai printed in it.
+4. Run the user script the same way by:
+    1. Comment the line containing `catalyst_test_deploy_in_prod`.
+    2. Uncomment the line that says `source("myDeployScript.R")`
+    3. Replace `myDeployScript.R` with the name of of the user script.
+5. Verify that a log was created with output from the user script.
+6. Delete the logs that were created.
+7. At this point the underlying script and its associated environment and libraries have been verified. Proceed to the extensibility point setup below.
+
 ## TODO
 
 - Get any insight into non-running SAMD. How do we get a smoke-signal out?
@@ -204,6 +221,7 @@ SELECT * FROM CatalystAdmin.ObjectAttributeBASE WHERE ObjectID = <TableID>
 - check variables
 - add breakpoint
 - look at V1 loader
+
 
 ### Possibly Helpful Debugging C# That We May Resort To
 
