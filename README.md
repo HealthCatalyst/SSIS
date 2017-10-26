@@ -9,7 +9,7 @@ These tools enable machine learning in the HC platform by setting up extensibili
 3. The R/Python script runs making predictions and populates a table.
 4. The SAM resumes ETLs.
 
-## Extensibility Poits Configuration
+## Extensibility Points Configuration
 
 Configuration for extensibility points are stored in two tables:
 
@@ -49,6 +49,8 @@ If any of these attributes are not defined, the package will exit and log the re
     + SQL Server Integration Services.
 - **SSMS**
     + SQL Server Management Studio. Where work happens.
+- **SSDT**
+    + SQL Server Data Tools. This is where the ISPAC file is first installed.
 - **EDW Console**
     + Catalyst web app for viewing and configuring ETLs.
     + Errors are surfaced here.
