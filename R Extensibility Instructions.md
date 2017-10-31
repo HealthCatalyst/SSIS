@@ -121,7 +121,7 @@ Seed `EDWAdmin.CatalystAdmin.ETLEngineConfigurationBASE` with these values:
 | **RequiredParametersTXT**           | `BatchID, TableID`                                                                       |
 | **FailsBatchFLG**                   | `1`                                                                                      |
 
-The following SQL template needs only a single adjustemt of the *DataMartID* before running.
+The following SQL template needs only a single adjustemt of the *DataMartID* before running. This is the DataMartID associated with the SAM where extensibility is being configured.
 
 ```sql
 INSERT INTO EDWAdmin.CatalystAdmin.ETLEngineConfigurationBASE
@@ -176,7 +176,7 @@ Changes to the example:
 
 Once modified, copy the example into the SQL template below, as it is stored _in_ the `ExternalRScript` field.
 
-1.  Seed following new destination entity attribute values into `EDWAdmin.CatalystAdmin.ObjectAttributeBASE` using the SQL template below. Be sure to adjust the values.
+1.  Seed following new destination entity attribute values into `EDWAdmin.CatalystAdmin.ObjectAttributeBASE` using the SQL template below. Be sure to adjust the values of the TableID ( = Destination Entity of output).
 
     |             Column             |                                Value                                |
     | ------------------------------ | ------------------------------------------------------------------- |
@@ -232,17 +232,28 @@ All of the following must be in the shared folder that is local to the ETL serve
     2. Saving the example into the `ExternalRScript` in `EDWAdmin.CatalystAdmin.AttributeBASE`
 2. Verify that a log was created with the correct version of healthcareai printed in it.
 3. Run the user script the same way by:
-    1. Comment the line containing `catalyst_test_deploy_in_prod`.
-    2. Uncomment the line that says `source("myDeployScript.R")`
-    3. Replace `myDeployScript.R` with the name of of the user script.
+    1. Commenting the line containing `catalyst_test_deploy_in_prod`.
+    2. Uncommenting the line that says `source("myDeployScript.R")`
+    3. Replacing `myDeployScript.R` with the name of of the user script.
 4. Verify that a log was created with output from the user script.
 5. Delete the logs that were created.
-6. At this point the underlying script and its associated environment and libraries have been verified. Proceed to the extensibility point setup below.
+6. At this point the underlying script and its associated environment and libraries have been verified. Proceed to the other notes below.
+
+## Subject Area Mart (SAM) Configuration
+Follow these steps in Subject Area Mart Designer (SAMD) to configure your SAM for typical predictive model extensibilityis if SAMD is being used as part of the model deployment infrastructure:
+- The source entity for the extensibility point should be the entity that serves as the dataset the R scripts pulls from
+- The destination entity for the extensibility point should be the entity that the R script populates/outputs to
+- Use SAMD to generate the output table and to create an entry in the metadata
+    - This initial metadata entry is essential to being able to reference the R output table in other SAM bindings
+    - The binding used to create the output table should return 0 rows while specifying field names and data types
+- Make the binding Inactive for the output table/R destination entity after running the output table once
+    - This ensures that SAMD does not remove the rows from the output table during each run of the extensibility/script
+- Think of the R script as the SAM binding and the output table as the SAM entity
 
 ## Gotchas
 
-- In the R script on Windows paths must use forward slashes `/` because R interprets backslahses as escape characters.
-- In the R script there must be no single quotes. They must all be double `"` quotes. Single quotes are excaped in the SQL statement.
+- In the R script on Windows paths must use forward slashes `/` because R interprets backslashes as escape characters.
+- In the R script there must be no single quotes. They must all be double `"` quotes. Single quotes are escaped in the SQL statement.
 
 ## Client Specific Oddities
 - Allina
