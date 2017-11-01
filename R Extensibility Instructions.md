@@ -241,14 +241,16 @@ All of the following must be in the shared folder that is local to the ETL serve
 
 ## Subject Area Mart (SAM) Configuration
 Follow these steps in Subject Area Mart Designer (SAMD) to configure your SAM for typical predictive model extensibilityis if SAMD is being used as part of the model deployment infrastructure:
-- The source entity for the extensibility point should be the entity that serves as the dataset the R scripts pulls from
-- The destination entity for the extensibility point should be the entity that the R script populates/outputs to
+- Think of the R script as the SAM binding and the output table as the SAM entity
+    - The source entity for the extensibility point should be the entity that serves as the dataset the R scripts pulls from
+    - The destination entity for the extensibility point should be the entity that the R script populates/outputs to
 - Use SAMD to generate the output table and to create an entry in the metadata
     - This initial metadata entry is essential to being able to reference the R output table in other SAM bindings
     - The binding used to create the output table should return 0 rows while specifying field names and data types
-- Make the binding Inactive for the output table/R destination entity after running the output table once
-    - This ensures that SAMD does not remove the rows from the output table during each run of the extensibility/script
-- Think of the R script as the SAM binding and the output table as the SAM entity
+    - Make the binding Inactive for the output table/R destination entity after running the output table once
+- Create a binding (and entity) in the SAM to handle additional transformation of the model output, if desired
+    - This might include limiting predictions to the most recent predictions that we appended to the output table
+
 
 ## Gotchas
 
