@@ -9,7 +9,7 @@ These tools enable machine learning in the HC platform by setting up extensibili
 3. The R/Python script runs making predictions and populates a table.
 4. The SAM resumes ETLs.
 
-## Extensibility Poits Configuration
+## Extensibility Points Configuration
 
 Configuration for extensibility points are stored in two tables:
 
@@ -32,8 +32,8 @@ Once the destination table loads its empty binding, the `OnPostTableLoad` event 
 
 ### Required Object Attributes:
 
-- **ExternalRScript**: System-level object attribute containing the R script
-- **ExternalPythonScript**: System-level object attribute containing the Python script
+- **ExternalRScript**: System-level object attribute containing the R script. Warning: It's possible that this is table-level, depending on the version of the package.
+- **ExternalPythonScript**: System-level object attribute containing the Python script. Warning: It's possible that this is table-level, depending on the version of the package.
 - **RInterpreterPath**: System-level local path of the `RScript.exe` interpreter
 - **PythonInterpreterPath**: System-level local path of the Python interpreter
 - **ExternalScriptType**: Table-level variable, `R` or `Python`
@@ -49,6 +49,8 @@ If any of these attributes are not defined, the package will exit and log the re
     + SQL Server Integration Services.
 - **SSMS**
     + SQL Server Management Studio. Where work happens.
+- **SSDT**
+    + SQL Server Data Tools. This is where the ISPAC file is first installed.
 - **EDW Console**
     + Catalyst web app for viewing and configuring ETLs.
     + Errors are surfaced here.
