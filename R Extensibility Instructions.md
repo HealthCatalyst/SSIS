@@ -3,55 +3,77 @@
 - [Repeatable Steps For Each Data Mart](#repeatable-steps-for-each-data-mart)
 - [Repeatable Steps For Each Destination Entity](#repeatable-steps-for-each-destination-entity)
 - [Seed Script Tempaltes](#seed-script-templates)
-<strong style='color: purple; background: orange; padding: 1em; font-size: 20px;'>FIX TOC WHEN COMPLETED</strong>
+
  
 This document instructs the user how to integrate their designated R/Python scripts into the Catalyst loaders.
 It begins by installing the required SSIS package and defining new system level attributes. It continues by injecting the new SSIS package into the designated loader step. It concludes by defining the necessary variables for each destination entity.
+
 ## Overview
 This extensibility point exists to solve the following problems/constraints:
 - Typically no file system access is given on the ETL machines. This is required to run an R/Python script with current infrastructure.
-- This extensibility point takes an R/Python script stored in a field in the EDW, writes it to a file in the staging folder, executes that file with the correct interpreter, and cleans the file up.
+- This extensibility point takes an R script stored in a field in the EDW, writes it to a file in the staging folder, executes that file with the correct interpreter, and cleans the file up.
 - The extensibility point also coordinates bindings within SAMD so that predictions occur in the right order with other SAMs.
+
 ## ML Model Script Verification
 Before installing the extensibility points, verify that the user's R/Python scripts run standalone on the desired machine.
 Due to the complexity of the extensibility process, **verifying this now avoids confusion later and reduces debugging time.** Only then should a user proceed to set up the extensibility points.
+
 ### Things to Look For
 - Verify that the R/Python interpreter is installed correctly.
-- Verify that all needed libraries are installed, including healthcareai.
+- Verify that all needed libraries are installed, including [healthcareai](https://github.com/HealthCatalyst/healthcareai-r).
+
 ### Suggested Verification Process Before Installing Extensibility
-1. Verify the R/Python scripts run on the ETL Server. Run them with one of the following options:
-    1. an IDE such as **RStudio**, **RGUI**, **Pycharm**, **Spyder**, etc.
-    2. the command line using `RScript <YOUR_SCRIPT_NAME>` or `python <YOUR_SCRIPT_NAME>`
-2. Run the example contained in `healthcareai::start_prod_logs.R`
-3. Verify that a log was created with the correct version of healthcareai printed in it.
-4. Run the user script the same way by:
-    1. Comment the line containing `catalyst_test_deploy_in_prod`.
-    2. Uncomment the line that says `source("myDeployScript.R")`
-    3. Replace `myDeployScript.R` with the name of of the user script.
-5. Verify that a log was created with output from the user script.
-6. Delete the logs that were created.
-7. At this point the underlying script and its associated environment and libraries have been verified. Proceed to the extensibility point setup below.
+
+1. Verify the R script runs in RGui on the ETL Server
+    1. Work in RGui (since other IDEs aren't supposed to reside on ETL Servers)
+    2. Install healthcare.ai; **Verify that you're installing the same version as used when training the model**; see [here](https://github.com/HealthCatalyst/healthcareai-r/releases) for older versions
+    2. Verify that your script works as anticipated (i.e., you can push predictions to the desired table)
+2. Check that the R.exe has been added to path
+    1. Open PowerShell and see if the R.exe is in your PATH by typing `R`
+    2. If R cannot be found, add it to path via [these instructions](http://www.itprotoday.com/management-mobility/how-can-i-add-new-folder-my-system-path); note: this might be `C:\Program Files\R\R-3.4.4\bin `      
+    3. Reopen PowerShell and see that `R` starts without errors by typing `R.exe`
+3. Verify the R script runs via PowerShell
+    1. Install R packages (i.e., healthcareai) and then exit R via `quit()`
+    2. Test your script using `RScript <PATH\YOUR_SCRIPT_NAME>` and make sure that predictions are inserted into the database
+      - *If you need a SQL output table schema*, look in the healthcareai docs by typing `?RandomForestDeployment` in R
+    3. Verify that a log was created with output from the user script.
+    4. Delete the logs that were created.
+4. At this point the underlying script and its associated environment and libraries have been verified. Proceed to the extensibility point setup below.
+
 ## Installing the Extensibility Packages From an ISPAC File
 The following steps are for the .ispac installation wizard.
-1. [Download](https://github.com/HealthCatalyst/SSIS/blob/master/ExternalScriptExtensibility.ispac) and unzip the .ispac file
-2. Select **Project Deployment File**
+
+1. [Download](https://github.com/HealthCatalyst/SSIS/blob/master/ExternalScriptExtensibility.ispac), unzip, and open the .ispac file
+
+2. Select `Project Deployment File` (Note: you can ignore warning about XML node)
 ![](images/SSIS_installation/SSIS_installation_1_project_deploy.png)
+
 3. Select the desired server
 ![](images/SSIS_installation/SSIS_installation_2_select_database_server.png)
+
 4. Create the folder `CatalsytExtensibility` if it does not exist on the database server
 ![](images/SSIS_installation/SSIS_installation_3_locate_or_create_folder.png)
-5. Deploy and ensure that all results passed.
+
+5. Cick `Next` and then `Deploy` and ensure that all results passed.
 ![](images/SSIS_installation/SSIS_installation_4_passing_resutls.png)
+
 6. Open SSMS and verify that these packages were installed:
 ![](images/SSIS_installation/SSIS_installation_5_verify_SSMS.png)
+
 ## Extensibility Point Configuration
-1. Establish local folder on the ETL server. This is the working directory that the user script will run in. Ideally, have the client DBA configure it as a shared folder that the HC engineer can read and write to.
-2. Configure permissions to allow the `EDW loader` user account to read, write, and execute in this directory.
-3. If not previously installed, install the ExternalScriptExtensibility.ispac on the ETL server. To find existing extensibility points look in: SSMS > Integration Services Catalog > SSISDB > CatalystExtensions > Projects
+1. Establish local folder on the ETL server. This is the working directory that the user script will run in. *Ideally, have the client DBA configure it as a shared folder that the analyst (i.e., model developer) can read and write to.*
+2. Determine Identity of EDW_Loader account;
+   1. In SSMS, look under Security -> Credentials -> Double click on credential roughly called EDW Loader
+   2. Look at and note the account listed in the `Identity` field
+3. Configure permissions to allow that same `EDW Loader` user account to read, write, and execute in this directory.
+   1. Right click on the folder with the R script
+   2. Select `Security` -> `Edit`
+   3. Add permissions to the EDW_Loader account that you identified above
+4. If not previously installed, install the ExternalScriptExtensibility.ispac on the ETL server. To find existing extensibility points look in: SSMS > Integration Services Catalog > SSISDB > CatalystExtensions > Projects
     1. Locate inside folder `\SSISDB\CatalsytExtensibility\`
     2. Verify permission to allow the `EDW loader` user account to execute.
     3. Configure `ExternalScriptExecution.dtsx` parameter called `StagingDirectory` with the local folder established in step 1.
-4. Seed three new attribute (`RInterpreterPath`, `ExternalScriptType`, `ExternalRScript`) names into `EDWAdmin.CatalystAdmin.AttributeBASE`. This table can be thought of as a set of keys where values of that key can be set for specific instances of an object elsewhere in `ObjectAttributeBASE`. **Note this SQL can be run as-is. There is no configuration required.**
+5. Seed three new attribute (`RInterpreterPath`, `ExternalScriptType`, `ExternalRScript`) names into `EDWAdmin.CatalystAdmin.AttributeBASE`. This table can be thought of as a set of keys where values of that key can be set for specific instances of an object elsewhere in `ObjectAttributeBASE`. **Note this SQL can be run as-is. There is no configuration required.**
     ```sql
     IF NOT EXISTS
         (SELECT * FROM EDWAdmin.CatalystAdmin.AttributeBASE WHERE AttributeNM = 'RInterpreterPath')
@@ -66,7 +88,7 @@ The following steps are for the .ispac installation wizard.
     INSERT INTO EDWAdmin.CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC)
         VALUES ('ExternalRScript','R script that contains functions')
     ```
-4. Verify that the new Attribute name keys exist in EDWAdmin.
+6. Verify that the new Attribute name keys exist in EDWAdmin.
     ```sql
     SELECT [AttributeID]
           ,[AttributeNM]
@@ -162,11 +184,13 @@ In SAMD, configure the dependencies for the extensibility. The SAMs are loaded s
 - Which table must finish loading before the R Script can run?
 - Which table will the R script write to?
 - Which table will begin loading after the R script is done writing to the database?
+
 ## ETL Shared Folder Contents
 All of the following must be in the shared folder that is local to the ETL server:
 - R script that contains the deploy code. Example: `heart_failure_deploy_v1.R`
 - R model that was trained for the project. Example: `heart_failure_rmodel_probability_lasso.rda`
 - R model info for the project. Example: `heart_failure_rmodel_info_lasso.rda`
+
 ## Suggested Verification Process After Installing Extensibility
 1. Trigger your extensibility to run the example contained in `healthcareai::start_prod_logs.R` by:
     1. Changing the working directory to the location that the user script will run
