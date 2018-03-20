@@ -69,34 +69,42 @@ The following steps are for the .ispac installation wizard.
    1. Right click on the folder with the R script
    2. Select `Security` -> `Edit`
    3. Add permissions to the EDW_Loader account that you identified above
-4. If not previously installed, install the ExternalScriptExtensibility.ispac on the ETL server. To find existing extensibility points look in: SSMS > Integration Services Catalog > SSISDB > CatalystExtensions > Projects
-    1. Locate inside folder `\SSISDB\CatalsytExtensibility\`
-    2. Verify permission to allow the `EDW loader` user account to execute.
-    3. Configure `ExternalScriptExecution.dtsx` parameter called `StagingDirectory` with the local folder established in step 1.
-5. Seed three new attribute (`RInterpreterPath`, `ExternalScriptType`, `ExternalRScript`) names into `EDWAdmin.CatalystAdmin.AttributeBASE`. This table can be thought of as a set of keys where values of that key can be set for specific instances of an object elsewhere in `ObjectAttributeBASE`. **Note this SQL can be run as-is. There is no configuration required.**
-    ```sql
-    IF NOT EXISTS
-        (SELECT * FROM EDWAdmin.CatalystAdmin.AttributeBASE WHERE AttributeNM = 'RInterpreterPath')
-    INSERT INTO EDWAdmin.CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC)
-        VALUES ('RInterpreterPath','Local path to RScript.exe')
-    IF NOT EXISTS
-        (SELECT * FROM EDWAdmin.CatalystAdmin.AttributeBASE WHERE AttributeNM = 'ExternalScriptType')
-    INSERT INTO EDWAdmin.CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC)
-        VALUES ('ExternalScriptType','Python or R')
-    IF NOT EXISTS
-        (SELECT * FROM EDWAdmin.CatalystAdmin.AttributeBASE WHERE AttributeNM = 'ExternalRScript')
-    INSERT INTO EDWAdmin.CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC)
-        VALUES ('ExternalRScript','R script that contains functions')
-    ```
-6. Verify that the new Attribute name keys exist in EDWAdmin.
-    ```sql
-    SELECT [AttributeID]
-          ,[AttributeNM]
-          ,[AttributeDSC]
-      FROM [EDWAdmin].[CatalystAdmin].[AttributeBASE]
-    WHERE AttributeNM IN ('RInterpreterPath', 'ExternalScriptType', 'ExternalRScript')
-    ```
-## Repeatable Steps For Each Data Mart
+4. Set permissions for SSIS packages installed above. To find existing extensibility points look in: SSMS > Integration Services Catalog > SSISDB > CatalystExtensibility > Projects
+    1. Download ETL User Guide for your version of DOS. Here is v3.2 and v4.0
+    2. Look for `Extensibility` chapter and the section called `Set up permissions for SSIS packages`
+    3. Follow instructions to verify permission to allow the `EDW loader` user account to execute.
+5. Under the `Packages` folder, find the `ExternalScriptExecution.dtsx` package, click `Configure` and set the  `StagingDirectory` parameter with the local folder path (where your R script lives), that was discussed above.
+
+## Define Attributes in EDWAdmin
+1. Seed three new attribute (`RInterpreterPath`, `ExternalScriptType`, `ExternalRScript`) names into `EDWAdmin.CatalystAdmin.AttributeBASE`. This table can be thought of as a set of keys where values of that key can be set for specific instances of an object elsewhere in `ObjectAttributeBASE`. **Note this SQL can be run as-is. There is no configuration required.**
+    
+```sql
+IF NOT EXISTS
+    (SELECT * FROM EDWAdmin.CatalystAdmin.AttributeBASE WHERE AttributeNM = 'RInterpreterPath')
+INSERT INTO EDWAdmin.CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC)
+    VALUES ('RInterpreterPath','Local path to RScript.exe')
+IF NOT EXISTS
+    (SELECT * FROM EDWAdmin.CatalystAdmin.AttributeBASE WHERE AttributeNM = 'ExternalScriptType')
+INSERT INTO EDWAdmin.CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC)
+    VALUES ('ExternalScriptType','R or Python')
+IF NOT EXISTS
+    (SELECT * FROM EDWAdmin.CatalystAdmin.AttributeBASE WHERE AttributeNM = 'ExternalRScript')
+INSERT INTO EDWAdmin.CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC)
+    VALUES ('ExternalRScript','R script that contains functions')
+```
+    
+2. Verify that the new Attribute name keys exist in EDWAdmin.
+    
+```sql
+SELECT [AttributeID]
+      ,[AttributeNM]
+      ,[AttributeDSC]
+  FROM [EDWAdmin].[CatalystAdmin].[AttributeBASE]
+WHERE AttributeNM IN ('RInterpreterPath', 'ExternalScriptType', 'ExternalRScript')
+```
+  
+## Create an Extensibility Point for Each Data Mart
+
 Seed `EDWAdmin.CatalystAdmin.ETLEngineConfigurationBASE` with these values:
 |                Column               |                                          Value                                           |
 | ----------------------------------- | ---------------------------------------------------------------------------------------- |
@@ -112,6 +120,7 @@ Seed `EDWAdmin.CatalystAdmin.ETLEngineConfigurationBASE` with these values:
 | **RequiredParametersTXT**           | `BatchID, TableID`                                                                       |
 | **FailsBatchFLG**                   | `1`                                                                                      |
 The following SQL template needs only a single adjustment of the *DataMartID* before running. This is the DataMartID associated with the SAM where extensibility is being configured.
+
 ```sql
 INSERT INTO EDWAdmin.CatalystAdmin.ETLEngineConfigurationBASE
 (
@@ -126,6 +135,7 @@ VALUES
     'OnPostStageToProdLoad', <DATA_MART_ID>, '\SSISDB\CatalystExtensibility\ExternalScriptExtensibility\ExternalScriptExecution.dtsx', 
     1, 'Health Catalyst', 0, 0, 1, 1, 'BatchID, TableID', 1
 )
+
 ```
 Update your `DataMartID` and verify insertion using this SQL template:
 ```sql
