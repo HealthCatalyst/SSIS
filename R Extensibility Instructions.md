@@ -191,7 +191,7 @@ Some deployment best practices for your R script (which will be inserted into SQ
 2. Switch to double quotes (`""`) instead of single quotes (`''`). *Why?*
   - Helps with insertion into database
   - Is [recommended](https://stackoverflow.com/a/20572492) by R community
-  - *Note:* if you need single ticks, before inserting into EDWAdmin, escape them by [using two single quotes](https://stackoverflow.com/a/1586588), like (`''Bob''`)
+  - *Note:* if you need single quotes, before inserting into EDWAdmin, escape them by [using two single quotes](https://stackoverflow.com/a/1586588), like (`''Bob''`)
 
 Once modified, copy the example into the SQL template below, so it is stored _in_ the `ExternalRScript` field in ObjectAttributeBASE
 
@@ -230,7 +230,7 @@ SELECT * FROM CatalystAdmin.ObjectAttributeBASE WHERE ObjectID = <TableID>
 - Which table will begin loading after the R script is done writing to the database?
 
 ## Verify that your Extensibility point is working
-1. If it doesn't harm ongoing ETL, in (EDW Console)[http://127.0.0.1/Atlas] create a SAMD batch to run the binding that the R script depends on (and turn on diagnostic logging).
+1. If it doesn't harm ongoing ETL, in [EDW Console](http://127.0.0.1/Atlas) create a SAMD batch to run the binding that the R script depends on (and turn on diagnostic logging).
 2. Run the batch
 3. 
 2. Verify that a log was created with the correct version of healthcareai printed in it.
@@ -283,3 +283,26 @@ catch (Exception exception)
     this.Dts.Events.FireError(0, "CallDPS", message, string.Empty, 0);
     this.Dts.TaskResult = (int)ScriptResults.Failure;
 ```
+
+## Fixing issues
+
+### Debugging tips (in order)
+
+1. Make sure you turn on Diagnostic Logging in EDW Console and look for helpful messages in entries with `Extension` and `OnPostStageToProdLoad`
+2. Look in Integration Services Catalogs -> SSISDB -> Catalyst Extensibility and right click on the `ExternalScriptExecution` package and click on Reports -> ... Standard Executions
+
+## Common issues
+
+- When running a batch, if predictins aren't made and you see this error in EDW Console
+
+  ```
+  The SELECT permission was denied on the object 'operations', database 'SSISDB'
+  ```
+  
+  Then, you must add a permission in SSMS by executing this query, **where edw_loader is changed to your specific loader account**:
+  
+  ```SQL
+  USE SSISDB;
+  GRANT SELECT ON internal.operations TO [HQCATALYST\edw_loader];
+  GO
+  ```
