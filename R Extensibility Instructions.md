@@ -4,6 +4,16 @@
 - [Repeatable Steps For Each Destination Entity](#repeatable-steps-for-each-destination-entity)
 - [Seed Script Tempaltes](#seed-script-templates)
 
+## Justin-based feedback
+
+# Debug by looking for `ExternalScriptExecution` in EDWConsole 
+
+
+## End new tips
+
+
+
+
 This document instructs the user how to integrate their designated R/Python scripts into the Catalyst loaders.
 It begins by installing the required SSIS package and defining new system level attributes. It continues by injecting the new SSIS package into the designated loader step. It concludes by defining the necessary variables for each destination entity.
 
@@ -49,24 +59,26 @@ All of the following must be in the shared folder that is local to the ETL serve
   
 The `.rda` files contain the model logic. Starting with healthcareai v2.0, only one rda is used. You can check healthcareai version via `sessionInfo` in R
 
-### Script Verification Process Before Installing Extensibility
+### R Script and Package Verification Process
 
-1. Verify the R script runs in RGui on the ETL Server
-    1. Work in RGui (since other IDEs aren't supposed to reside on ETL Servers)
-    2. Verify that your script works as anticipated (i.e., you can push predictions to the desired table)
-    
-2. Check that the R.exe **folder** has been added to path
+1. Verify that that packages you depend on are installed correctly on the ETL server
+    1. Run RGui as administrator
+    2. Check that your packages are installed via `library(healthcareai)`
+    3. If these need to be installed, type `install.packages('healthcareai')`
+    4. Verify that these are _not_ installed in a personal folder by looking for them in `C:\Program Files\R\R-3.4.4\library`
+    - If struggling, check out the `lib` argument [here](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/install.packages.html)
+
+2. Verify your R script runs in RGui on the ETL Server (i.e., you can push predictions to the desired table)
+
+3. Check that the R.exe **folder** has been added to path
     1. Open PowerShell and see if the R.exe **folder** is in your PATH by typing `R.exe`
     2. If R cannot be found, add it to path via [these instructions](http://www.itprotoday.com/management-mobility/how-can-i-add-new-folder-my-system-path); note: this might be `C:\Program Files\R\R-3.4.4\bin`      
     3. Reopen PowerShell and see that `R` starts without errors by typing `R.exe`
-    
-3. Verify the R script runs via PowerShell
-    1. Install R packages (i.e., healthcareai) and then exit R via `quit()`
-    2. Test your script using `Rscript <PATH\YOUR_SCRIPT_NAME>` and make sure that predictions are inserted into the database
-    3. Verify that a log was created with output from the user script.
-    4. Delete the logs that were created.
-    
-4. At this point the underlying script and its associated environment and libraries have been verified. Proceed to the extensibility point setup below.
+
+4. Test your script in PowerShell
+   1. Test your script using `Rscript <PATH\YOUR_SCRIPT_NAME>` and make sure that predictions are inserted into the database
+   2. Verify that a log was created in the folder where your script lives
+   3. To ease future debugging, delete the logs that were created in the directory where your script lives
 
 ## Installing the Extensibility Packages From an ISPAC File
 The following steps are for the .ispac installation wizard.
@@ -137,7 +149,7 @@ Seed `EDWAdmin.CatalystAdmin.ETLEngineConfigurationBASE` with these values:
 
 |                Column               |                                          Value                                           |
 | ----------------------------------- | ---------------------------------------------------------------------------------------- |
-| **ExtensionPointNM**    | `OnPostStageToProdLoad`                                                                  |
+| **ExtensionPointNM**    | `OnPreStageToProdLoad`                                                                  |
 | **DatamartID**          | <DATA_MART_ID>                                                                           |
 | **SSISPackagePathOrSPToExecuteTXT** | `\SSISDB\CatalystExtensibility\ExternalScriptExtensibility\ExternalScriptExecution.dtsx` |
 | **IsSSISPackageFLG**                | `1`                                                                                      |
@@ -195,7 +207,7 @@ Some deployment best practices for your R script (which will be inserted into SQ
 
 Once modified, copy the example into the SQL template below, so it is stored _in_ the `ExternalRScript` field in ObjectAttributeBASE
 
-1.  Seed following new destination entity attribute values into `EDWAdmin.CatalystAdmin.ObjectAttributeBASE` using the SQL template below. Be sure to adjust the values of the TableID ( = Destination Entity of output).
+1.  Seed following new destination entity attribute values into `EDWAdmin.CatalystAdmin.ObjectAttributeBASE` using the SQL template below. Be sure to adjust the values of the TableID ( = **Destination** Entity of R output).
 
     |             Column             |                                Value                                |
     | ------------------------------ | ------------------------------------------------------------------- |
@@ -232,9 +244,6 @@ SELECT * FROM CatalystAdmin.ObjectAttributeBASE WHERE ObjectID = <TableID>
 ## Verify that your Extensibility point is working
 1. If it doesn't harm ongoing ETL, in [EDW Console](http://127.0.0.1/Atlas) create a SAMD batch to run the binding that the R script depends on (and turn on diagnostic logging).
 2. Run the batch
-3. 
-2. Verify that a log was created with the correct version of healthcareai printed in it.
-    
 4. Verify that a log was created with output from the user script.
 5. Delete the logs that were created.
 6. At this point the underlying script and its associated environment and libraries have been verified. Proceed to the other notes below.
@@ -245,14 +254,30 @@ Follow these steps in Subject Area Mart Designer (SAMD) to configure your SAM fo
 - Think of the R script as the SAM binding and the output table as the SAM entity
     - The source entity for the extensibility point should be the entity that serves as the dataset the R scripts pulls from
     - The destination entity for the extensibility point should be the entity that the R script populates/outputs to
-- Use SAMD to generate the output table and to create an entry in the metadata
+    - Use SAMD to generate the output table and to create an entry in the metadata
+    - Can use a query like this to generate the destination entity (that R populates):
+
+    ```SQL
+    select 
+    
+     '' AS NationalIDNumber
+     , 38.0 AS PredictedProbNBR
+     , '' AS Factor1TXT
+     , '' AS Factor2TXT
+     , '' AS Factor3TXT
+     
+      from SAM.HR.HRMLSummaryTable where 1=0
+    ```
+    **Note: We need the query to have 1 = 0 to create dependency from ML input entity to output entity, but that doesn't process any rows.**
     - This initial metadata entry is essential to being able to reference the R output table in other SAM bindings
     - The binding used to create the output table should return 0 rows while specifying field names and data types
-- Create a binding (and entity) in the SAM to handle additional transformation of the model output, if desired
+    - Create a binding (and entity) in the SAM to handle additional transformation of the model output, if desired
     - This might include limiting predictions to the most recent predictions that we appended to the output table
+    
 ## Gotchas
 - In the R script on Windows paths must use forward slashes `/` because R interprets backslashes as escape characters.
 - In the R script there must be no single quotes. They must all be double `"` quotes. Single quotes are escaped in the SQL statement.
+
 ## Client Specific Oddities
 - Allina
     - Using an old version of the extensibility where `RInterpreterPath` is a system-level variable with ID of 0.
