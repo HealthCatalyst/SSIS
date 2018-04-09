@@ -4,16 +4,6 @@
 - [Repeatable Steps For Each Destination Entity](#repeatable-steps-for-each-destination-entity)
 - [Seed Script Tempaltes](#seed-script-templates)
 
-## Justin-based feedback
-
-# Debug by looking for `ExternalScriptExecution` in EDWConsole 
-
-
-## End new tips
-
-
-
-
 This document instructs the user how to integrate their designated R/Python scripts into the Catalyst loaders.
 It begins by installing the required SSIS package and defining new system level attributes. It continues by injecting the new SSIS package into the designated loader step. It concludes by defining the necessary variables for each destination entity.
 
@@ -278,42 +268,12 @@ Follow these steps in Subject Area Mart Designer (SAMD) to configure your SAM fo
 - In the R script on Windows paths must use forward slashes `/` because R interprets backslashes as escape characters.
 - In the R script there must be no single quotes. They must all be double `"` quotes. Single quotes are escaped in the SQL statement.
 
-## Client Specific Oddities
-- Allina
-    - Using an old version of the extensibility where `RInterpreterPath` is a system-level variable with ID of 0.
-- Multicare
-    - The folders were configured with the wrong names, "Extensions" instead of "Extensibility." SQL must be modified accordingly.
-## TODO
-- Get any insight into non-running SAMD. How do we get a smoke-signal out?
-- figure out what that field format is
-- run stored proc and find out what type it returns
-- debug nodes
-- check variables
-- add breakpoint
-- look at V1 loader
-### Possibly Helpful Debugging C# That We May Resort To
-```C#
-try
-{
-    string dataProcessingServiceBaseUri = GetDataProcessingServiceBaseUri(discoveryServiceBaseUri);
-    RewriteIncrementalQueries(dataProcessingServiceBaseUri, batchExecutionId);
-    this.Dts.TaskResult = (int)ScriptResults.Success;
-}
-catch (Exception exception)
-{
-    string message =
-        string.Format(
-            "An error occurred while calling the DPS to rewrite the incremental queries: {0}",
-            exception.Message);
-    this.Dts.Events.FireError(0, "CallDPS", message, string.Empty, 0);
-    this.Dts.TaskResult = (int)ScriptResults.Failure;
-```
-
 ## Fixing issues
 
 ### Debugging tips (in order)
 
 1. Make sure you turn on Diagnostic Logging in EDW Console and look for helpful messages in entries with `Extension` and `OnPostStageToProdLoad`
+  - Look for `ExternalScriptExecution` in EDWConsole 
 2. Look in Integration Services Catalogs -> SSISDB -> Catalyst Extensibility and right click on the `ExternalScriptExecution` package and click on Reports -> ... Standard Executions
 
 ## Common issues
@@ -331,3 +291,35 @@ catch (Exception exception)
   GRANT SELECT ON internal.operations TO [HQCATALYST\edw_loader];
   GO
   ```
+  
+  ## Client Specific Oddities
+- Ally Lina in Midwest
+    - Using an old version of the extensibility where `RInterpreterPath` is a system-level variable with ID of 0.
+- MCare in Pac N West
+    - The folders were configured with the wrong names, "Extensions" instead of "Extensibility." SQL must be modified accordingly.
+## TODO
+- Get any insight into non-running SAMD. How do we get a smoke-signal out?
+- figure out what that field format is
+- run stored proc and find out what type it returns
+- debug nodes
+- check variables
+- add breakpoint
+- look at V1 loader
+
+### Possibly Helpful Debugging C# That We May Resort To
+```C#
+try
+{
+    string dataProcessingServiceBaseUri = GetDataProcessingServiceBaseUri(discoveryServiceBaseUri);
+    RewriteIncrementalQueries(dataProcessingServiceBaseUri, batchExecutionId);
+    this.Dts.TaskResult = (int)ScriptResults.Success;
+}
+catch (Exception exception)
+{
+    string message =
+        string.Format(
+            "An error occurred while calling the DPS to rewrite the incremental queries: {0}",
+            exception.Message);
+    this.Dts.Events.FireError(0, "CallDPS", message, string.Empty, 0);
+    this.Dts.TaskResult = (int)ScriptResults.Failure;
+```
