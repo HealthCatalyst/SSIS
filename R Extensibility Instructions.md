@@ -1,62 +1,49 @@
 # Machine Learning :: R Extensibility Instructions
+# Fix links
 - [Initial Steps](#initial-steps)
 - [Repeatable Steps For Each Data Mart](#repeatable-steps-for-each-data-mart)
 - [Repeatable Steps For Each Destination Entity](#repeatable-steps-for-each-destination-entity)
 - [Seed Script Tempaltes](#seed-script-templates)
 
-This document instructs the user how to integrate their designated R/Python scripts into the Catalyst loaders.
-It begins by installing the required SSIS package and defining new system level attributes. It continues by injecting the new SSIS package into the designated loader step. It concludes by defining the necessary variables for each destination entity.
-
 ## Overview
-This extensibility point exists to solve the following problems/constraints:
+This document instructs the user how to integrate their designated R scripts into the Catalyst loaders. It begins by testing the R script, and then installing the required SSIS package and defining new system level attributes. It continues by injecting the new SSIS package into the designated loader step. It concludes by defining the necessary variables for each destination entity. This extensibility point exists to solve the following problems/constraints:
+
 - Typically no file system access is given on the ETL machines. This is required to run an R script with current infrastructure.
 - This extensibility point takes an R script stored in a field in the EDW, writes it to a file in the staging folder, executes that file with the correct interpreter, and cleans the file up.
 - The extensibility point also coordinates bindings within SAMD so that predictions occur in the right order with other SAMs.
 
-## ML Model Script Verification
-Before installing the extensibility points, verify that the user's R scripts run standalone on the desired machine.
-Due to the complexity of the extensibility process, **verifying this now avoids confusion later and reduces debugging time.** Only then should a user proceed to set up the extensibility points.
+## Requirements
 
-# Permissions needed
+- Permissions needed to 
+  - Write EDWAdmin inserts via SQL
+  - To install an SSIS package
+  - To install the R interpreter
+- You know which version of R and healthcareai your model was trained on. Can verify on the workstation in R via
+`library(healthcareai)` and then `sessionInfo()`
+- This same version of R is installed on the ETL server. See [here](https://cran.r-project.org/bin/windows/base/) for latest download and  [here](https://cran.r-project.org/bin/windows/base/old/) for older versions Please make sure this isn't a user-specific install
 
-### High-level Things to Look For
-- Verify that the R interpreter is installed correctly and check the version by opening RGui and typing `sessionInfo()`
-  - **Your model should be trained on this version**; see [here](https://cran.r-project.org/bin/windows/base/old/) for older versions
-
-- Verify that all needed libraries are installed, including [healthcareai](https://github.com/HealthCatalyst/healthcareai-r). Type `library(healthcareai)` to check for errors.
-  - **Your model should be trained on this version of healthcareai**; see [here](https://github.com/HealthCatalyst/healthcareai-r/releases) for older versions
-- Verify that predictions are flowing to your ouput table of choice *on your server of choice*. Note that if you haven't already created this output table, please do so in SAMD (so that EDWAdmin has metadata for it). Here's a typical output schema when doing classification predictions:
-
-|                Column               |                                          Type                                           |
-| ----------------------------------------------------------- | ------------------------------------------------------- |
-| **GrainID (could be PatientID or PatientEncounterID)** | `Same as in R input table`|
-| **PredictedProbNBR **                                  | `decimal(38,2)`|
-| **Factor1TXT **                                        | `varchar(255)`|
-| **Factor1TXT **                                        | `varchar(255)`|
-| **Factor1TXT **                                        | `varchar(255)`|
-
-Note, your output schema may be different. Can modify as needed (and use `str(df)` function in R to determine output structure)
-
-**Be sure to mark this R output entity as inactive, so your nightly predictive results don't get overwritten.**
+## Pre-extensibility checks
 
 ### Files Needed in R Working Directory
 
-All of the following must be in the shared folder that is local to the ETL server:
+All of the following must be in the shared folder that is local to the ETL server. Note: the person who trained the model will have to help in identifying these:
 
   - R script that contains the deploy code. Example: `heart_failure_v1_deploy.R`
-  - R model that was trained for the project. Example: `heart_failure_v1_rmodel_info_RF.rda`
-  - R model info for the project. Example: `heart_failure_v1_rmodel_probability.rda`
+  - 2 rda model files that were generated when training. Examples:
+    - `heart_failure_v1_rmodel_info_RF.rda`
+    - `heart_failure_v1_rmodel_probability.rda`
   
-The `.rda` files contain the model logic. Starting with healthcareai v2.0, only one rda is used. You can check healthcareai version via `sessionInfo` in R
+The `.rda` files contain the model logic. Starting with healthcareai v2.0, only one rda is used. You can check healthcareai version via `sessionInfo()` in R
 
 ### R Script and Package Verification Process
 
-1. Verify that that packages you depend on are installed correctly on the ETL server
+1. Verify that that packages you depend on are installed correctly on the ETL server. Recall that versioning must be the same as when the model was trained.
     1. Run RGui as administrator
     2. Check that your packages are installed via `library(healthcareai)`
     3. If these need to be installed, type `install.packages('healthcareai')`
     4. Verify that these are _not_ installed in a personal folder by looking for them in `C:\Program Files\R\R-3.4.4\library`
-    - If struggling, check out the `lib` argument [here](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/install.packages.html)
+      - If struggling with personal directories, check out the `lib` argument [here](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/install.packages.html)
+      - If you need an **old version** of healthcareai see [here](https://github.com/HealthCatalyst/healthcareai-r/releases) for downloads and use this install syntax: `install.packages(<pathtopackage>, repos = NULL, type="source")`
 
 2. Verify your R script runs in RGui on the ETL Server (i.e., you can push predictions to the desired table)
 
@@ -69,6 +56,9 @@ The `.rda` files contain the model logic. Starting with healthcareai v2.0, only 
    1. Test your script using `Rscript <PATH\YOUR_SCRIPT_NAME>` and make sure that predictions are inserted into the database
    2. Verify that a log was created in the folder where your script lives
    3. To ease future debugging, delete the logs that were created in the directory where your script lives
+
+Before installing the extensibility points, please verify that the user's R scripts run standalone on the desired machine.
+Due to the complexity of the extensibility process, **verifying this now avoids confusion later and reduces debugging time.** Only then should a user proceed to set up the extensibility points.
 
 ## Installing the Extensibility Packages From an ISPAC File
 The following steps are for the .ispac installation wizard.
@@ -181,7 +171,7 @@ Before proceeding to this step, ensure that your ML script runs on it's own outs
 # Move to working directory 
 setwd("C:/Users/levi.thatcher/Downloads") # --> Change to shared folder on ETL server <--
 
-library(methods) # required, with any other libraries you need
+library(methods) # required if using healthcare.ai <v2.0, along with any other libraries you need
 
 # Your R code below...
 
@@ -239,44 +229,54 @@ SELECT * FROM CatalystAdmin.ObjectAttributeBASE WHERE ObjectID = <TableID>
 6. At this point the underlying script and its associated environment and libraries have been verified. Proceed to the other notes below.
 
 ## Subject Area Mart (SAM) Configuration
-Follow these steps in Subject Area Mart Designer (SAMD) to configure your SAM for typical predictive model extensibility as if SAMD is being used as part of the model deployment infrastructure:
+Follow these steps in Subject Area Mart Designer (SAMD) to configure your SAM for typical predictive model extensibility, where SAMD is being used as part of the model deployment infrastructure:
 
-- Think of the R script as the SAM binding and the output table as the SAM entity
-    - The source entity for the extensibility point should be the entity that serves as the dataset the R scripts pulls from
-    - The destination entity for the extensibility point should be the entity that the R script populates/outputs to
-    - Use SAMD to generate the output table and to create an entry in the metadata
-    - Can use a query like this to generate the destination entity (that R populates):
+1. Think of the R script as the SAM binding and the output table as the SAM entity. The _source_ entity for the extensibility point should be the entity that serves as the dataset the R scripts pulls from. The _destination_ entity for the extensibility point should be the entity that the R script populates/outputs to
 
-    ```SQL
-    select 
-    
-     '' AS NationalIDNumber
-     , 38.0 AS PredictedProbNBR
-     , '' AS Factor1TXT
-     , '' AS Factor2TXT
-     , '' AS Factor3TXT
-     
-      from SAM.HR.HRMLSummaryTable where 1=0
-    ```
-    **Note: We need the query to have 1 = 0 to create dependency from ML input entity to output entity, but that doesn't process any rows.**
-    - This initial metadata entry is essential to being able to reference the R output table in other SAM bindings
-    - The binding used to create the output table should return 0 rows while specifying field names and data types
-    - Create a binding (and entity) in the SAM to handle additional transformation of the model output, if desired
-    - This might include limiting predictions to the most recent predictions that we appended to the output table
-    
-## Gotchas
-- In the R script on Windows paths must use forward slashes `/` because R interprets backslashes as escape characters.
-- In the R script there must be no single quotes. They must all be double `"` quotes. Single quotes are escaped in the SQL statement.
+2. Create a new binding in SAMD that will create the structure of the R destination entity/table. Here's a query that creates the schema, but doesn't populate the rows. Note the `1=0` is required because this destination table will be populated by R each day--not the SQL
+
+  ```SQL
+  SELECT 
+  
+   '' AS NationalIDNumber
+   , 38.0 AS PredictedProbNBR
+   , '' AS Factor1TXT --These are deprecated in healthcare.ai v2.0
+   , '' AS Factor2TXT
+   , '' AS Factor3TXT
+   
+  FROM SAM.HR.HRMLSummaryTable where 1=0
+  ```
+  
+Relatedly, here's the bare minimum output schema when doing classification predictions:
+
+|                Column               |                                          Type                                           |
+| ----------------------------------------------------------- | ------------------------------------------------------- |
+| **GrainID (could be PatientID or PatientEncounterID)** | `Same as in R input table`|
+| **PredictedProbNBR **                                  | `decimal(38,2)`|
+
+3. Since this set of instructions requires >= DOS 1.0 (or CAP 4.0), set the binding for the destination entity to `Incremental`
+
+Note:
+
+- This initial metadata entry is essential to being able to reference the R output table in other SAM bindings
+- Create a binding (and entity) in the SAM to handle additional transformation of the model output, if desired
+- This might include limiting predictions to the most recent predictions that we appended to the output table
 
 ## Fixing issues
 
+At this point, when you run your SAM, your R script should run the model and append new rows to the destination table. If that doesn't happen, see these tips.
+
+### Gotchas
+- In the R script on Windows paths must use forward slashes `/` because R interprets backslashes as escape characters.
+- In the R script there must be no single quotes. They must all be double `"` quotes. Single quotes are escaped in the SQL statement.
+
 ### Debugging tips (in order)
 
-1. Make sure you turn on Diagnostic Logging in EDW Console and look for helpful messages in entries with `Extension` and `OnPostStageToProdLoad`
-  - Look for `ExternalScriptExecution` in EDWConsole 
+1. Make sure you turn on Diagnostic Logging in EDW Console and look for helpful messages in entries with `ExternalScriptExecution`, `Extension` and `OnPostStageToProdLoad`
+
 2. Look in Integration Services Catalogs -> SSISDB -> Catalyst Extensibility and right click on the `ExternalScriptExecution` package and click on Reports -> ... Standard Executions
 
-## Common issues
+### Common issues
 
 - When running a batch, if predictins aren't made and you see this error in EDW Console
 
@@ -292,7 +292,7 @@ Follow these steps in Subject Area Mart Designer (SAMD) to configure your SAM fo
   GO
   ```
   
-  ## Client Specific Oddities
+### Client Specific Oddities
 - Ally Lina in Midwest
     - Using an old version of the extensibility where `RInterpreterPath` is a system-level variable with ID of 0.
 - MCare in Pac N West
