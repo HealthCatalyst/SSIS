@@ -1,39 +1,44 @@
 # Machine Learning :: R Extensibility Instructions
-# Fix links
-- [Initial Steps](#initial-steps)
+
+- [Pre-extensibility checks](#pre-extensibility-checks)
+- [Installing the Extensibility Packages](#installing-the-extensibility-packages-from-an-ispac-file)
+- [Permissions and Configuration](#permissions-and-configuration)
+- [Define Attributes in EDWAdmin](#define-attributes-in-edwadmin)
 - [Repeatable Steps For Each Data Mart](#repeatable-steps-for-each-data-mart)
 - [Repeatable Steps For Each Destination Entity](#repeatable-steps-for-each-destination-entity)
-- [Seed Script Tempaltes](#seed-script-templates)
+
 
 ## Overview
 This document instructs the user how to integrate their designated R scripts into the Catalyst loaders. It begins by testing the R script, and then installing the required SSIS package and defining new system level attributes. It continues by injecting the new SSIS package into the designated loader step. It concludes by defining the necessary variables for each destination entity. This extensibility point exists to solve the following problems/constraints:
 
-- Typically no file system access is given on the ETL machines. This is required to run an R script with current infrastructure.
 - This extensibility point takes an R script stored in a field in the EDW, writes it to a file in the staging folder, executes that file with the correct interpreter, and cleans the file up.
 - The extensibility point also coordinates bindings within SAMD so that predictions occur in the right order with other SAMs.
 
 ## Requirements
 
-- Permissions needed to 
+- DOS v4.0 or above
+- Permissions are needed to 
   - Write EDWAdmin inserts via SQL
   - To install an SSIS package
-  - To install the R interpreter
+  - To run RGui as admin
+- You have successfully created an output table and pushed prediction to the SAM database via the vignette [here](https://docs.healthcare.ai/articles/site_only/deploy_model.html)
 - You know which version of R and healthcareai your model was trained on. Can verify on the workstation in R via
 `library(healthcareai)` and then `sessionInfo()`
-- This same version of R is installed on the ETL server. See [here](https://cran.r-project.org/bin/windows/base/) for latest download and  [here](https://cran.r-project.org/bin/windows/base/old/) for older versions Please make sure this isn't a user-specific install
+- This same version of R is installed on the ETL server. See [here](https://cran.r-project.org/bin/windows/base/) for latest download and  [here](https://cran.r-project.org/bin/windows/base/old/) for older versions. Please make sure this isn't a user-specific install
+- You've downloaded the DOS ETL User Guide. See [here](https://community.healthcatalyst.com/docs/DOC-2096) for 4.0 and [here](https://community.healthcatalyst.com/docs/DOC-2674) for 4.2
 
 ## Pre-extensibility checks
 
 ### Files Needed in R Working Directory
 
-All of the following must be in the shared folder that is local to the ETL server. Note: the person who trained the model will have to help in identifying these:
+Establish local folder on the ETL server. This is the working directory that the user script will run in. *Ideally, have the client DBA configure it as a shared folder that the analyst (i.e., model developer) can read and write to.* The following must be in the shared folder that is local to the ETL server. After deploying, the R script will actually run from a cell in EDWAdmin. This is a placeholder for the file while you're testing. Note: the person who trained the model will have to help in identifying these:
 
   - R script that contains the deploy code. Example: `heart_failure_v1_deploy.R`
   - 2 rda model files that were generated when training. Examples:
     - `heart_failure_v1_rmodel_info_RF.rda`
-    - `heart_failure_v1_rmodel_probability.rda`
+    - `heart_failure_v1_rmodel_probability.rds`
   
-The `.rda` files contain the model logic. Starting with healthcareai v2.0, only one rda is used. You can check healthcareai version via `sessionInfo()` in R
+The `.rda` or `.rds` files contain the model logic. Starting with healthcareai v2.0, only one rds is used. You can check healthcareai version via `sessionInfo()` in R
 
 ### R Script and Package Verification Process
 
@@ -49,7 +54,7 @@ The `.rda` files contain the model logic. Starting with healthcareai v2.0, only 
 
 3. Check that the R.exe **folder** has been added to path
     1. Open PowerShell and see if the R.exe **folder** is in your PATH by typing `R.exe`
-    2. If R cannot be found, add it to path via [these instructions](http://www.itprotoday.com/management-mobility/how-can-i-add-new-folder-my-system-path); note: this might be `C:\Program Files\R\R-3.4.4\bin`      
+    2. If R cannot be found, add it to the **system** path via [these instructions](http://www.itprotoday.com/management-mobility/how-can-i-add-new-folder-my-system-path); note: this might be `C:\Program Files\R\R-3.4.4\bin`      
     3. Reopen PowerShell and see that `R` starts without errors by typing `R.exe`
 
 4. Test your script in PowerShell
@@ -63,7 +68,7 @@ Due to the complexity of the extensibility process, **verifying this now avoids 
 ## Installing the Extensibility Packages From an ISPAC File
 The following steps are for the .ispac installation wizard.
 
-1. [Download](https://github.com/HealthCatalyst/SSIS/blob/master/ExternalScriptExtensibility.ispac), unzip, and open the .ispac file
+1. [Download](https://github.com/justin-page/SSIS/blob/c49d38584d4b523c9d5788f2a36980acd3b8812e/ExternalScriptExtensibility.ispac?raw=true), unzip, and open the .ispac file
 
 2. Select `Project Deployment File` (Note: you can ignore warning about XML node)
 ![](images/SSIS_installation/SSIS_installation_1_project_deploy.png)
@@ -71,7 +76,7 @@ The following steps are for the .ispac installation wizard.
 3. Select the desired server
 ![](images/SSIS_installation/SSIS_installation_2_select_database_server.png)
 
-4. Create the folder `CatalsytExtensibility` if it does not exist on the database server
+4. Create a new top-level folder `CatalystExtensibility` if it does not exist on the database server
 ![](images/SSIS_installation/SSIS_installation_3_locate_or_create_folder.png)
 
 5. Cick `Next` and then `Deploy` and ensure that all results passed.
@@ -80,20 +85,20 @@ The following steps are for the .ispac installation wizard.
 6. Open SSMS and verify that these packages were installed:
 ![](images/SSIS_installation/SSIS_installation_5_verify_SSMS.png)
 
-## Extensibility Point Configuration
-1. Establish local folder on the ETL server. This is the working directory that the user script will run in. *Ideally, have the client DBA configure it as a shared folder that the analyst (i.e., model developer) can read and write to.*
-2. Determine Identity of EDW_Loader account;
+## Permissions and Configuration
+1. Determine Identity of EDW_Loader account;
    1. In SSMS, look under Security -> Credentials -> Double click on credential roughly called EDW Loader
    2. Look at and note the account listed in the `Identity` field
-3. Configure permissions to allow that same `EDW Loader` user account to read, write, and execute in this directory.
+2. Configure permissions to allow that same `EDW Loader` user account to read, write, and execute in this directory.
    1. Right click on the folder with the R script
    2. Select `Security` -> `Edit`
-   3. Add permissions to the EDW_Loader account that you identified above
-4. Set permissions for SSIS packages installed above. To find existing extensibility points look in: SSMS > Integration Services Catalog > SSISDB > CatalystExtensibility > Projects
-    1. Download ETL User Guide for your version of DOS. Here is v3.2 and v4.0
+   3. Add read, write, and execute permissions to the EDW_Loader account that you identified above
+3. Set permissions for SSIS packages installed above. To find existing extensibility points look in: SSMS > Integration Services Catalog > SSISDB > CatalystExtensibility > Projects
+    1. Refer to the ETL User Guide for your version of DOS (off of the Catalyst intranet).
     2. Look for `Extensibility` chapter and the section called `Set up permissions for SSIS packages`
     3. Follow instructions to verify permission to allow the `EDW loader` user account to execute.
-5. Under the `Packages` folder, find the `ExternalScriptExecution.dtsx` package, click `Configure` and set the  `StagingDirectory` to the working directory (where your R script and rda files live), that was determined above.
+    4. Don't forget to `enable proper permissions for the SSIS Database`
+4. Under the `Packages` folder, find the `ExternalScriptExecution.dtsx` package, click `Configure` and set the  `StagingDirectory` to the working directory (where your R script and rda files live), that was determined above.
 
 ## Define Attributes in EDWAdmin
 1. Seed three new attribute (`RInterpreterPath`, `ExternalScriptType`, `ExternalRScript`) names into `EDWAdmin.CatalystAdmin.AttributeBASE`. This table can be thought of as a set of keys where values of that key can be set for specific instances of an object elsewhere in `ObjectAttributeBASE`. **Note this SQL can be run as-is. There is no configuration required.**
@@ -125,12 +130,12 @@ WHERE AttributeNM IN ('RInterpreterPath', 'ExternalScriptType', 'ExternalRScript
   
 ## Create an Extensibility Point for Each Data Mart
 
-Seed `EDWAdmin.CatalystAdmin.ETLEngineConfigurationBASE` with these values:
+Seed `EDWAdmin.CatalystAdmin.ETLEngineConfigurationBASE` with these values. SQL insert statement is below.
 
 |                Column               |                                          Value                                           |
 | ----------------------------------- | ---------------------------------------------------------------------------------------- |
 | **ExtensionPointNM**    | `OnPreStageToProdLoad`                                                                  |
-| **DatamartID**          | <DATA_MART_ID>                                                                           |
+| **DatamartID**          | `<DATA_MART_ID>`                                                                        |
 | **SSISPackagePathOrSPToExecuteTXT** | `\SSISDB\CatalystExtensibility\ExternalScriptExtensibility\ExternalScriptExecution.dtsx` |
 | **IsSSISPackageFLG**                | `1`                                                                                      |
 | **ExtensionOwnerNM**                | `Health Catalyst`                                                                        |
@@ -140,6 +145,8 @@ Seed `EDWAdmin.CatalystAdmin.ETLEngineConfigurationBASE` with these values:
 | **ActiveFLG**                       | `1`                                                                                      |
 | **RequiredParametersTXT**           | `BatchID, TableID`                                                                       |
 | **FailsBatchFLG**                   | `1`                                                                                      |
+Note: to get proper visibility into failures, RunInAsyncModeFLG and FailsBatchFLG **must** be set as specified.
+
 The following SQL template needs only a single adjustment of the *DataMartID* before running. This is the DataMartID associated with the SAM where extensibility is being configured.
 
 ```sql
@@ -177,17 +184,17 @@ library(methods) # required if using healthcare.ai <v2.0, along with any other l
 
 ```
 
-Some deployment best practices for your R script (which will be inserted into SQL Server):
+Some deployment best practices for your *R script* (which will be inserted into SQL Server):
 
 1. Use functions from packages, if possible. Long R scripts are extremely hard to debug
-2. Switch to double quotes (`""`) instead of single quotes (`''`). *Why?*
+2. Outside of your R script's SQL query, switch to double quotes (`""`) instead of single quotes (`''`). *Why?*
   - Helps with insertion into database
   - Is [recommended](https://stackoverflow.com/a/20572492) by R community
   - *Note:* if you need single quotes, before inserting into EDWAdmin, escape them by [using two single quotes](https://stackoverflow.com/a/1586588), like (`''Bob''`)
 
 Once modified, copy the example into the SQL template below, so it is stored _in_ the `ExternalRScript` field in ObjectAttributeBASE
 
-1.  Seed following new destination entity attribute values into `EDWAdmin.CatalystAdmin.ObjectAttributeBASE` using the SQL template below. Be sure to adjust the values of the TableID ( = **Destination** Entity of R output).
+  - Seed the following new destination entity attribute values into `EDWAdmin.CatalystAdmin.ObjectAttributeBASE` using the SQL template below. Be sure to adjust the values of the TableID ( = **Destination** Entity of R output), as well as R.exe path and RScript.
 
     |             Column             |                                Value                                |
     | ------------------------------ | ------------------------------------------------------------------- |
@@ -216,51 +223,29 @@ Verify insertion using this SQL template (edit your `TableID`):
 SELECT * FROM CatalystAdmin.ObjectAttributeBASE WHERE ObjectID = <TableID>
 ```
 
-2.  Configure dependencies based on need. In SAMD, configure the dependencies for the extensibility. The SAMs are loaded serially. From the perspective of SAMD, the extensibility is just another SAM. It must be configured to run in the proper place in the chain. Particularly:
+## Subject Area Mart (SAM) Configuration
+From the perspective of SAMD, the R step is just another SAM binding. It must be configured to run in the proper place in the chain, as SAMs are loaded serially. Think about these dependencies in particular:
+
 - Which table must finish loading before the R Script can run?
 - Which table will the R script write to?
 - Which table will begin loading after the R script is done writing to the database?
+
+If you haven't already, follow these steps in Subject Area Mart Designer (SAMD) to configure your SAM for typical predictive model extensibility, where SAMD is being used as part of the model deployment infrastructure:
+
+- Think of the R script as the SAM binding and the output table as the SAM entity. The _source_ entity for the extensibility point should be the entity that serves as the dataset the R scripts pulls from. The _destination_ entity for the extensibility point should be the entity that the R script populates/outputs to
+
+- Verify that the output binding/entity is set up and tracked in metadata via [these instructions](https://docs.healthcare.ai/articles/site_only/deploy_model.html).
+  - This initial metadata entry is essential to being able to reference the R output table in other SAM bindings
+  - Create a binding (and entity) in the SAM to handle additional transformation of the model output, if desired. This might include limiting predictions to the most recent predictions that we appended to the output table
 
 ## Verify that your Extensibility point is working
 1. If it doesn't harm ongoing ETL, in [EDW Console](http://127.0.0.1/Atlas) create a SAMD batch to run the binding that the R script depends on (and turn on diagnostic logging).
 2. Run the batch
 4. Verify that a log was created with output from the user script.
 5. Delete the logs that were created.
-6. At this point the underlying script and its associated environment and libraries have been verified. Proceed to the other notes below.
-
-## Subject Area Mart (SAM) Configuration
-Follow these steps in Subject Area Mart Designer (SAMD) to configure your SAM for typical predictive model extensibility, where SAMD is being used as part of the model deployment infrastructure:
-
-1. Think of the R script as the SAM binding and the output table as the SAM entity. The _source_ entity for the extensibility point should be the entity that serves as the dataset the R scripts pulls from. The _destination_ entity for the extensibility point should be the entity that the R script populates/outputs to
-
-2. Create a new binding in SAMD that will create the structure of the R destination entity/table. Here's a query that creates the schema, but doesn't populate the rows. Note the `1=0` is required because this destination table will be populated by R each day--not the SQL
-
-  ```SQL
-  SELECT 
-  
-   '' AS NationalIDNumber
-   , 38.0 AS PredictedProbNBR
-   , '' AS Factor1TXT --These are deprecated in healthcare.ai v2.0
-   , '' AS Factor2TXT
-   , '' AS Factor3TXT
-   
-  FROM SAM.HR.HRMLSummaryTable where 1=0
-  ```
-  
-Relatedly, here's the bare minimum output schema when doing classification predictions:
-
-|                Column               |                                          Type                                           |
-| ----------------------------------------------------------- | ------------------------------------------------------- |
-| **GrainID (could be PatientID or PatientEncounterID)** | `Same as in R input table`|
-| **PredictedProbNBR **                                  | `decimal(38,2)`|
-
-3. Since this set of instructions requires >= DOS 1.0 (or CAP 4.0), set the binding for the destination entity to `Incremental`
-
-Note:
-
-- This initial metadata entry is essential to being able to reference the R output table in other SAM bindings
-- Create a binding (and entity) in the SAM to handle additional transformation of the model output, if desired
-- This might include limiting predictions to the most recent predictions that we appended to the output table
+6. At this point the underlying script and its associated environment and libraries have been verified. Congrats on deploying!
+7. If you're putting these predictions in a health system user interface, wait a period for verification of in-production predictions.
+   - If you're predicting 30-day readmissions, it's wise to wait >30 days to verify that your predictions are accurate.
 
 ## Fixing issues
 
@@ -268,7 +253,7 @@ At this point, when you run your SAM, your R script should run the model and app
 
 ### Gotchas
 - In the R script on Windows paths must use forward slashes `/` because R interprets backslashes as escape characters.
-- In the R script there must be no single quotes. They must all be double `"` quotes. Single quotes are escaped in the SQL statement.
+- In the R script, outside of the SQL statement, there must be no single quotes. They must all be double `"` quotes.
 
 ### Debugging tips (in order)
 
@@ -276,9 +261,9 @@ At this point, when you run your SAM, your R script should run the model and app
 
 2. Look in Integration Services Catalogs -> SSISDB -> Catalyst Extensibility and right click on the `ExternalScriptExecution` package and click on Reports -> ... Standard Executions
 
-### Common issues
+### Common fixes
 
-- When running a batch, if predictins aren't made and you see this error in EDW Console
+- When running a batch, if predictions aren't made and you see this error in EDW Console
 
   ```
   The SELECT permission was denied on the object 'operations', database 'SSISDB'
@@ -291,35 +276,3 @@ At this point, when you run your SAM, your R script should run the model and app
   GRANT SELECT ON internal.operations TO [HQCATALYST\edw_loader];
   GO
   ```
-  
-### Client Specific Oddities
-- Ally Lina in Midwest
-    - Using an old version of the extensibility where `RInterpreterPath` is a system-level variable with ID of 0.
-- MCare in Pac N West
-    - The folders were configured with the wrong names, "Extensions" instead of "Extensibility." SQL must be modified accordingly.
-## TODO
-- Get any insight into non-running SAMD. How do we get a smoke-signal out?
-- figure out what that field format is
-- run stored proc and find out what type it returns
-- debug nodes
-- check variables
-- add breakpoint
-- look at V1 loader
-
-### Possibly Helpful Debugging C# That We May Resort To
-```C#
-try
-{
-    string dataProcessingServiceBaseUri = GetDataProcessingServiceBaseUri(discoveryServiceBaseUri);
-    RewriteIncrementalQueries(dataProcessingServiceBaseUri, batchExecutionId);
-    this.Dts.TaskResult = (int)ScriptResults.Success;
-}
-catch (Exception exception)
-{
-    string message =
-        string.Format(
-            "An error occurred while calling the DPS to rewrite the incremental queries: {0}",
-            exception.Message);
-    this.Dts.Events.FireError(0, "CallDPS", message, string.Empty, 0);
-    this.Dts.TaskResult = (int)ScriptResults.Failure;
-```
