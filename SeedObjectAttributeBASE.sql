@@ -20,9 +20,6 @@ INSERT INTO CatalystAdmin.ObjectAttributeBASE (ObjectID,ObjectTypeCD,AttributeNM
 	VALUES (3,'Table','ExternalScriptType','string','R')
 
 INSERT INTO CatalystAdmin.ObjectAttributeBASE (ObjectID,ObjectTypeCD,AttributeNM,AttributeTypeCD,AttributeValueTXT)
-	VALUES (3,'Table','ExternalScriptSourceEntity','string','SAM.Sample.SampleSAMSampleBindingBASE')
-
-INSERT INTO CatalystAdmin.ObjectAttributeBASE (ObjectID,ObjectTypeCD,AttributeNM,AttributeTypeCD,AttributeValueTXT)
 	VALUES (3,'Table','ExternalScriptFunction','string','FindTrends')
 
 INSERT INTO CatalystAdmin.ObjectAttributeBASE (ObjectID,ObjectTypeCD,AttributeNM,AttributeTypeCD,AttributeValueTXT)

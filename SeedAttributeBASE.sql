@@ -15,6 +15,3 @@ IF NOT EXISTS (SELECT * FROM CatalystAdmin.AttributeBASE WHERE AttributeNM = 'Ex
 
 IF NOT EXISTS (SELECT * FROM CatalystAdmin.AttributeBASE WHERE AttributeNM = 'ExternalScriptArguments')
 	INSERT INTO CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC) VALUES ('ExternalScriptArguments','HCPythonTools script that contains HC functions')
-
-IF NOT EXISTS (SELECT * FROM CatalystAdmin.AttributeBASE WHERE AttributeNM = 'ExternalScriptSourceEntity')
-	INSERT INTO CatalystAdmin.AttributeBASE (AttributeNM, AttributeDSC) VALUES ('ExternalScriptSourceEntity','Source entity from which to calculate predictions')

@@ -7,12 +7,12 @@
   DTS:CreatorName="HQCATALYST\marshall.pettit"
   DTS:DTSID="{2DA4B3C0-2D41-4069-8C89-E1F130955982}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.2100.60"
+  DTS:LastModifiedProductVersion="11.0.7001.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="ExternalScriptExecution"
   DTS:PackageType="5"
-  DTS:VersionBuild="134"
-  DTS:VersionGUID="{1542D57B-06FD-4D1E-9D73-629FBA69082C}">
+  DTS:VersionBuild="138"
+  DTS:VersionGUID="{589362C6-D090-45FB-B336-8E1D3212FC2D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -35,7 +35,7 @@
       DTS:ObjectName="BatchID">
       <DTS:Property
         DTS:DataType="3"
-        DTS:Name="ParameterValue">0</DTS:Property>
+        DTS:Name="ParameterValue">1</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -44,7 +44,7 @@
       DTS:ObjectName="BindingHistoryID">
       <DTS:Property
         DTS:DataType="3"
-        DTS:Name="ParameterValue">0</DTS:Property>
+        DTS:Name="ParameterValue">2</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -53,7 +53,7 @@
       DTS:ObjectName="StagingDirectory">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">C:\</DTS:Property>
+        DTS:Name="ParameterValue">C:\Staging</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -62,40 +62,13 @@
       DTS:ObjectName="TableID">
       <DTS:Property
         DTS:DataType="3"
-        DTS:Name="ParameterValue">0</DTS:Property>
+        DTS:Name="ParameterValue">2</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{08BC7040-D018-4666-B190-D8AE7FB66172}"
-      DTS:IncludeInDebugDump="6789"
-      DTS:Namespace="User"
-      DTS:ObjectName="DestinationEntityID">
-      <DTS:VariableValue
-        DTS:DataType="3">0</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{71979930-E75A-42F0-9897-27FAFC04971E}"
-      DTS:IncludeInDebugDump="6789"
-      DTS:Namespace="User"
-      DTS:ObjectName="DestinationEntityList">
-      <DTS:VariableValue
-        DTS:DataSubType="ManagedSerializable"
-        DTS:DataType="13">
-        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-          <SOAP-ENV:Body>
-            <xsd:anyType
-              id="ref-1"></xsd:anyType>
-          </SOAP-ENV:Body>
-        </SOAP-ENV:Envelope>
-      </DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{6C229BB9-60B9-496D-B6F7-FAEFB35D5552}"
+      DTS:DTSID="{8E9D9F96-19FD-4B66-BF85-EB68458CFFC4}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="DestinationEntityName">
@@ -174,12 +147,13 @@
       DTS:CreationName=""
       DTS:DTSID="{01A35280-5A96-4C34-AE3E-62037981C2F6}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;CreateDataFrame localhost MachoSource dbo.NameAndBirthday SAM dbo.[SampleSAMEntityB] VacationHours&quot;"
+      DTS:Expression="&quot;&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="ScriptArguments">
       <DTS:VariableValue
-        DTS:DataType="8">CreateDataFrame localhost MachoSource dbo.NameAndBirthday SAM dbo.[SampleSAMEntityB] VacationHours</DTS:VariableValue>
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -249,34 +223,14 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{9678DB67-AFEE-408D-80A0-5E2ADE9C84DD}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="SourceEntityName">
-      <DTS:VariableValue
-        DTS:DataType="8">SAM.Sample.SourceEntity</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{0D4F3005-1014-4FFE-A996-7E690E55AA46}"
-      DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;SELECT ObjectID FROM CatalystAdmin.ObjectAttributeBASE WHERE ObjectTypeCD = 'Table' and AttributeNM = 'ExternalScriptSourceEntity' and AttributeValueTXT = '&quot; +  @[User::SourceEntityName] + &quot;'&quot;"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="SQL_GetDestinationEntityList">
-      <DTS:VariableValue
-        DTS:DataType="8">SELECT ObjectID FROM CatalystAdmin.ObjectAttributeBASE WHERE ObjectTypeCD = 'Table' and AttributeNM = 'ExternalScriptSourceEntity' and AttributeValueTXT = 'SAM.Sample.SourceEntity'</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
       DTS:DTSID="{D090F2E7-B099-4689-846E-C8059262C4CD}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;SELECT DatabaseNM + '.' + SchemaNM + '.' + ViewNM AS DestinationEntity FROM CatalystAdmin.TableBASE WHERE TableID = &quot; +  (DT_WSTR, 18)  @[User::DestinationEntityID]"
+      DTS:Expression="&quot;SELECT DatabaseNM + '.' + SchemaNM + '.' + ViewNM AS DestinationEntity FROM CatalystAdmin.TableBASE WHERE TableID = &quot; +  (DT_WSTR, 18)  @[$Package::TableID]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="SQL_GetDestinationEntityName">
       <DTS:VariableValue
-        DTS:DataType="8">SELECT DatabaseNM + '.' + SchemaNM + '.' + ViewNM AS DestinationEntity FROM CatalystAdmin.TableBASE WHERE TableID = 0</DTS:VariableValue>
+        DTS:DataType="8">SELECT DatabaseNM + '.' + SchemaNM + '.' + ViewNM AS DestinationEntity FROM CatalystAdmin.TableBASE WHERE TableID = 2</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -292,45 +246,45 @@
       DTS:CreationName=""
       DTS:DTSID="{9A0641E5-9390-4186-941F-36CEE2FA5E58}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;EXEC CatalystAdmin.etlGetObjectAttributeValue &quot; + (DT_WSTR, 255)  @[User::DestinationEntityID]  + &quot; , 'PythonInterpreterPath', 'Table'&quot;"
+      DTS:Expression="&quot;EXEC CatalystAdmin.etlGetObjectAttributeValue &quot; + (DT_WSTR, 255)  @[$Package::TableID]  + &quot; , 'PythonInterpreterPath', 'Table'&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="SQL_GetPythonInterpreterPath">
       <DTS:VariableValue
-        DTS:DataType="8">EXEC CatalystAdmin.etlGetObjectAttributeValue 0 , 'PythonInterpreterPath', 'Table'</DTS:VariableValue>
+        DTS:DataType="8">EXEC CatalystAdmin.etlGetObjectAttributeValue 2 , 'PythonInterpreterPath', 'Table'</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{3F3CDFAD-C958-49E7-8BAB-576F9E93894D}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;SELECT AttributeValueLongTXT FROM CatalystAdmin.ObjectAttributeBASE WHERE ObjectTypeCD = 'Table' and AttributeNM = 'ExternalPythonScript' AND ObjectID = &quot; +  (DT_WSTR, 18) @[User::DestinationEntityID]"
+      DTS:Expression="&quot;SELECT AttributeValueLongTXT FROM CatalystAdmin.ObjectAttributeBASE WHERE ObjectTypeCD = 'Table' and AttributeNM = 'ExternalPythonScript' AND ObjectID = &quot; +  (DT_WSTR, 18) @[$Package::TableID]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="SQL_GetPythonScript">
       <DTS:VariableValue
-        DTS:DataType="8">SELECT AttributeValueLongTXT FROM CatalystAdmin.ObjectAttributeBASE WHERE ObjectTypeCD = 'Table' and AttributeNM = 'ExternalPythonScript' AND ObjectID = 0</DTS:VariableValue>
+        DTS:DataType="8">SELECT AttributeValueLongTXT FROM CatalystAdmin.ObjectAttributeBASE WHERE ObjectTypeCD = 'Table' and AttributeNM = 'ExternalPythonScript' AND ObjectID = 2</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{0AD65CD2-1B3C-4D55-9ABA-AFA960FCC335}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;EXEC CatalystAdmin.etlGetObjectAttributeValue &quot; + (DT_WSTR, 255)  @[User::DestinationEntityID]  + &quot; , 'RInterpreterPath', 'Table'&quot;"
+      DTS:Expression="&quot;EXEC CatalystAdmin.etlGetObjectAttributeValue &quot; + (DT_WSTR, 255)  @[$Package::TableID]  + &quot; , 'RInterpreterPath', 'Table'&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="SQL_GetRInterpreterPath">
       <DTS:VariableValue
-        DTS:DataType="8">EXEC CatalystAdmin.etlGetObjectAttributeValue 0 , 'RInterpreterPath', 'Table'</DTS:VariableValue>
+        DTS:DataType="8">EXEC CatalystAdmin.etlGetObjectAttributeValue 2 , 'RInterpreterPath', 'Table'</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{ABDC6C4C-2B5E-4F13-A021-C115365DE488}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;SELECT AttributeValueLongTXT FROM CatalystAdmin.ObjectAttributeBASE WHERE ObjectTypeCD = 'Table' and AttributeNM = 'ExternalRScript' AND ObjectID = &quot; +  (DT_WSTR, 18) @[User::DestinationEntityID]"
+      DTS:Expression="&quot;SELECT AttributeValueLongTXT FROM CatalystAdmin.ObjectAttributeBASE WHERE ObjectTypeCD = 'Table' and AttributeNM = 'ExternalRScript' AND ObjectID = &quot; +  (DT_WSTR, 18) @[$Package::TableID]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="SQL_GetRScript">
       <DTS:VariableValue
-        DTS:DataType="8">SELECT AttributeValueLongTXT FROM CatalystAdmin.ObjectAttributeBASE WHERE ObjectTypeCD = 'Table' and AttributeNM = 'ExternalRScript' AND ObjectID = 0</DTS:VariableValue>
+        DTS:DataType="8">SELECT AttributeValueLongTXT FROM CatalystAdmin.ObjectAttributeBASE WHERE ObjectTypeCD = 'Table' and AttributeNM = 'ExternalRScript' AND ObjectID = 2</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -351,7 +305,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="SQL_GetScriptArguments">
       <DTS:VariableValue
-        DTS:DataType="8">EXEC CatalystAdmin.etlGetObjectAttributeValue 0, 'ExternalScriptArguments', 'Table'</DTS:VariableValue>
+        DTS:DataType="8">EXEC CatalystAdmin.etlGetObjectAttributeValue 2, 'ExternalScriptArguments', 'Table'</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -362,18 +316,18 @@
       DTS:Namespace="User"
       DTS:ObjectName="SQL_GetScriptFunction">
       <DTS:VariableValue
-        DTS:DataType="8">EXEC CatalystAdmin.etlGetObjectAttributeValue 0, 'ExternalScriptFunction', 'Table'</DTS:VariableValue>
+        DTS:DataType="8">EXEC CatalystAdmin.etlGetObjectAttributeValue 2, 'ExternalScriptFunction', 'Table'</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{D0F26517-404B-45BF-BB47-F5AFEFB799CA}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;EXEC CatalystAdmin.etlGetObjectAttributeValue &quot; +  (DT_WSTR, 18) @[User::DestinationEntityID]  + &quot;, 'ExternalScriptType', 'Table'&quot;"
+      DTS:Expression="&quot;EXEC CatalystAdmin.etlGetObjectAttributeValue &quot; +  (DT_WSTR, 18) @[$Package::TableID]  + &quot;, 'ExternalScriptType', 'Table'&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="SQL_GetScriptType">
       <DTS:VariableValue
-        DTS:DataType="8">EXEC CatalystAdmin.etlGetObjectAttributeValue 0, 'ExternalScriptType', 'Table'</DTS:VariableValue>
+        DTS:DataType="8">EXEC CatalystAdmin.etlGetObjectAttributeValue 2, 'ExternalScriptType', 'Table'</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -384,7 +338,19 @@
       DTS:Namespace="User"
       DTS:ObjectName="SQL_GetSourceEntityName">
       <DTS:VariableValue
-        DTS:DataType="8">SELECT DatabaseNM + '.' + SchemaNM + '.' + ViewNM AS SourceEntity FROM CatalystAdmin.TableBASE WHERE TableID = 0</DTS:VariableValue>
+        DTS:DataType="8">SELECT DatabaseNM + '.' + SchemaNM + '.' + ViewNM AS SourceEntity FROM CatalystAdmin.TableBASE WHERE TableID = 2</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{92B7ACC9-9D94-43F7-92A7-3E3EF9791C3C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;EXEC CatalystAdmin.etlSetSSISEventLog &quot; +&#xA;&quot;@BatchID = &quot; + (DT_WSTR,20)@[$Package::BatchID] &#xA;+ &quot;, @TableID = &quot; + (DT_WSTR, 20)@[$Package::TableID] &#xA;+ &quot;, @PackageNM = '&quot; + (DT_WSTR, 255)@[System::PackageName] &#xA;+ &quot;', @EventTypeCD = 'Information'&#xA;, @TaskNM = 'SQL - Log About to Execute Script&quot;&#xA;+ &quot;', @EventCD = NULL&quot;&#xA;+ &quot;, @ExecStatment = '&quot; + @[User::InterpreterPath] + &quot; &quot; + @[User::ExecutionArguments] + &quot;', @EventDSC = 'See Exec Statement for Execution Error&quot;&#xA;+ &quot;', @EventDTS = '&quot; + (DT_STR, 30, 1252) GETDATE() &#xA;+ &quot;', @HostNM = '&quot; + (DT_WSTR, 255)@[System::MachineName]&#xA;+ &quot;', @BindingHistoryID=&quot; + (DT_WSTR, 20) @[$Package::BindingHistoryID]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQL_LogAboutToExecuteScript">
+      <DTS:VariableValue
+        DTS:DataType="8">EXEC CatalystAdmin.etlSetSSISEventLog @BatchID = 1, @TableID = 2, @PackageNM = 'ExternalScriptExecution', @EventTypeCD = 'Information'
+, @TaskNM = 'SQL - Log About to Execute Script', @EventCD = NULL, @ExecStatment = ' ', @EventDSC = 'See Exec Statement for Execution Error', @EventDTS = '2018-01-04 15:04:01.490000000', @HostNM = 'HC2352', @BindingHistoryID=2</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -395,7 +361,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="SQL_LogExecutionError">
       <DTS:VariableValue
-        DTS:DataType="8">EXEC CatalystAdmin.etlSetSSISEventLog @BatchID = 0, @TableID = 0, @PackageNM = 'ExternalScriptExecution', @EventTypeCD = 'OnWarning', @TaskNM = 'SQL - Log Script Error Output', @EventCD = NULL, @ExecStatment = 'ExecutionErrorMessage', @EventDSC = 'See Exec Statement for Execution Error', @EventDTS = '2017-09-29 11:26:34.691000000', @HostNM = 'HCS-GM0001', @BindingHistoryID=0</DTS:VariableValue>
+        DTS:DataType="8">EXEC CatalystAdmin.etlSetSSISEventLog @BatchID = 1, @TableID = 2, @PackageNM = 'ExternalScriptExecution', @EventTypeCD = 'OnWarning', @TaskNM = 'SQL - Log Script Error Output', @EventCD = NULL, @ExecStatment = 'ExecutionErrorMessage', @EventDSC = 'See Exec Statement for Execution Error', @EventDTS = '2018-01-04 15:04:01.490000000', @HostNM = 'HC2352', @BindingHistoryID=2</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -406,8 +372,8 @@
       DTS:Namespace="User"
       DTS:ObjectName="SQL_LogExecutionOutput">
       <DTS:VariableValue
-        DTS:DataType="8">EXEC CatalystAdmin.etlSetSSISEventLog @BatchID = 0, @TableID = 0, @PackageNM = 'ExternalScriptExecution', @EventTypeCD = 'Information'
-, @TaskNM = 'SQL - Log Script Execution Output', @EventCD = NULL, @ExecStatment = '', @EventDSC = 'See Exec Statement for Execution Error', @EventDTS = '2017-09-29 11:26:34.691000000', @HostNM = 'HCS-GM0001', @BindingHistoryID=0</DTS:VariableValue>
+        DTS:DataType="8">EXEC CatalystAdmin.etlSetSSISEventLog @BatchID = 1, @TableID = 2, @PackageNM = 'ExternalScriptExecution', @EventTypeCD = 'Information'
+, @TaskNM = 'SQL - Log Script Execution Output', @EventCD = NULL, @ExecStatment = '', @EventDSC = 'See Exec Statement for Execution Error', @EventDTS = '2018-01-04 15:04:01.490000000', @HostNM = 'HC2352', @BindingHistoryID=2</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -418,7 +384,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="SQL_LogExternalScriptEmpty">
       <DTS:VariableValue
-        DTS:DataType="8">EXEC CatalystAdmin.etlSetSSISEventLog @BatchID = 0, @TableID = 0, @PackageNM = 'ExternalScriptExecution', @EventTypeCD = 'OnError', @TaskNM = 'SQL - Log Empty External Script Error', @EventCD = NULL, @EventDSC = 'The ExternalScript was not defined.', @EventDTS = '2017-09-29 11:26:34.692000000', @HostNM = 'HCS-GM0001', @BindingHistoryID=0</DTS:VariableValue>
+        DTS:DataType="8">EXEC CatalystAdmin.etlSetSSISEventLog @BatchID = 1, @TableID = 2, @PackageNM = 'ExternalScriptExecution', @EventTypeCD = 'OnError', @TaskNM = 'SQL - Log Empty External Script Error', @EventCD = NULL, @EventDSC = 'The ExternalScript was not defined.', @EventDTS = '2018-01-04 15:04:01.491000000', @HostNM = 'HC2352', @BindingHistoryID=2</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -429,7 +395,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="SQL_LogExternalScriptTypeEmpty">
       <DTS:VariableValue
-        DTS:DataType="8">EXEC CatalystAdmin.etlSetSSISEventLog @BatchID = 0, @TableID = 0, @PackageNM = 'ExternalScriptExecution', @EventTypeCD = 'Information', @TaskNM = 'SQL - Log Empty Script Type', @EventCD = NULL, @EventDSC = 'The ExternalScriptType was not defined.', @EventDTS = '2017-09-29 11:26:34.692000000', @HostNM = 'HCS-GM0001', @BindingHistoryID=0</DTS:VariableValue>
+        DTS:DataType="8">EXEC CatalystAdmin.etlSetSSISEventLog @BatchID = 1, @TableID = 2, @PackageNM = 'ExternalScriptExecution', @EventTypeCD = 'Information', @TaskNM = 'SQL - Log Empty Script Type', @EventCD = NULL, @EventDSC = 'The ExternalScriptType was not defined.', @EventDTS = '2018-01-04 15:04:01.491000000', @HostNM = 'HC2352', @BindingHistoryID=2</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -440,7 +406,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="SQL_LogInterpreterPathEmpty">
       <DTS:VariableValue
-        DTS:DataType="8">EXEC CatalystAdmin.etlSetSSISEventLog @BatchID = 0, @TableID = 0, @PackageNM = 'ExternalScriptExecution', @EventTypeCD = 'OnError', @TaskNM = 'SQL - Log Empty Interpreter Path Error', @EventCD = NULL, @EventDSC = 'The PythonInterpreterPath or RInterpreterPath was not defined.', @EventDTS = '2017-09-29 11:26:34.693000000', @HostNM = 'HCS-GM0001', @BindingHistoryID=0</DTS:VariableValue>
+        DTS:DataType="8">EXEC CatalystAdmin.etlSetSSISEventLog @BatchID = 1, @TableID = 2, @PackageNM = 'ExternalScriptExecution', @EventTypeCD = 'OnError', @TaskNM = 'SQL - Log Empty Interpreter Path Error', @EventCD = NULL, @EventDSC = 'The PythonInterpreterPath or RInterpreterPath was not defined.', @EventDTS = '2018-01-04 15:04:01.492000000', @HostNM = 'HC2352', @BindingHistoryID=2</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -451,18 +417,18 @@
       DTS:Namespace="User"
       DTS:ObjectName="SQL_LogScriptFunctionEmpty">
       <DTS:VariableValue
-        DTS:DataType="8">EXEC CatalystAdmin.etlSetSSISEventLog @BatchID = 0, @TableID = 0, @PackageNM = 'ExternalScriptExecution', @EventTypeCD = 'OnError', @TaskNM = 'SQL - Log Empty External Script Function Error', @EventCD = NULL, @EventDSC = 'The ExternalScriptFunction was not defined.', @EventDTS = '2017-09-29 11:26:34.693000000', @HostNM = 'HCS-GM0001', @BindingHistoryID=0</DTS:VariableValue>
+        DTS:DataType="8">EXEC CatalystAdmin.etlSetSSISEventLog @BatchID = 1, @TableID = 2, @PackageNM = 'ExternalScriptExecution', @EventTypeCD = 'OnError', @TaskNM = 'SQL - Log Empty External Script Function Error', @EventCD = NULL, @EventDSC = 'The ExternalScriptFunction was not defined.', @EventDTS = '2018-01-04 15:04:01.492000000', @HostNM = 'HC2352', @BindingHistoryID=2</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{6D45A1AE-3E88-4104-BF61-10E80CCC0CB6}"
+      DTS:DTSID="{1C9FFE69-AE0F-4BBC-83AA-353570C52128}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;EXEC CatalystAdmin.etlSetSSISEventLog &quot; +&#xA;&quot;@BatchID = &quot; + (DT_WSTR,20)@[$Package::BatchID] &#xA;+ &quot;, @TableID = &quot; + (DT_WSTR, 20)@[$Package::TableID] &#xA;+ &quot;, @PackageNM = '&quot; + (DT_WSTR, 255)@[System::PackageName] &#xA;+ &quot;', @EventTypeCD = 'OnError&quot;&#xA;+ &quot;', @TaskNM = 'SQL - Log Empty Source Entity Name Error&quot;&#xA;+ &quot;', @EventCD = NULL&quot;&#xA;+ &quot;, @EventDSC = 'The ExternalScriptSourceEntity value was not defined..&quot;&#xA;+ &quot;', @EventDTS = '&quot; + (DT_STR, 30, 1252) GETDATE() &#xA;+ &quot;', @HostNM = '&quot; + (DT_WSTR, 255)@[System::MachineName]&#xA;+ &quot;', @BindingHistoryID=&quot; + (DT_WSTR, 20) @[$Package::BindingHistoryID]"
+      DTS:Expression="&quot;EXEC CatalystAdmin.etlSetSSISEventLog &quot; +&#xA;&quot;@BatchID = &quot; + (DT_WSTR,20)@[$Package::BatchID] &#xA;+ &quot;, @TableID = &quot; + (DT_WSTR, 20)@[$Package::TableID] &#xA;+ &quot;, @PackageNM = '&quot; + (DT_WSTR, 255)@[System::PackageName] &#xA;+ &quot;', @EventTypeCD = 'Information&quot;&#xA;+ &quot;', @TaskNM = 'SQL - Log Not Empty Script Type&quot;&#xA;+ &quot;', @EventCD = NULL&quot;&#xA;+ &quot;, @EventDSC = 'The External Script Type was &quot; + (DT_WSTR, 20)@[User::ScriptType] + &quot;.&quot;&#xA;+ &quot;', @EventDTS = '&quot; + (DT_STR, 30, 1252) GETDATE() &#xA;+ &quot;', @HostNM = '&quot; + (DT_WSTR, 255)@[System::MachineName]&#xA;+ &quot;', @BindingHistoryID=&quot; + (DT_WSTR, 20) @[$Package::BindingHistoryID]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
-      DTS:ObjectName="SQL_LogSourceEntityNameEmpty">
+      DTS:ObjectName="SQL_LogScriptTypeNotEmpty">
       <DTS:VariableValue
-        DTS:DataType="8">EXEC CatalystAdmin.etlSetSSISEventLog @BatchID = 0, @TableID = 0, @PackageNM = 'ExternalScriptExecution', @EventTypeCD = 'OnError', @TaskNM = 'SQL - Log Empty Source Entity Name Error', @EventCD = NULL, @EventDSC = 'The ExternalScriptSourceEntity value was not defined..', @EventDTS = '2017-09-29 11:26:34.694000000', @HostNM = 'HCS-GM0001', @BindingHistoryID=0</DTS:VariableValue>
+        DTS:DataType="8">EXEC CatalystAdmin.etlSetSSISEventLog @BatchID = 1, @TableID = 2, @PackageNM = 'ExternalScriptExecution', @EventTypeCD = 'Information', @TaskNM = 'SQL - Log Not Empty Script Type', @EventCD = NULL, @EventDSC = 'The External Script Type was .', @EventDTS = '2018-01-04 15:04:01.492000000', @HostNM = 'HC2352', @BindingHistoryID=2</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -477,103 +443,104 @@
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Foreach Destination Entity"
-      DTS:CreationName="STOCK:FOREACHLOOP"
-      DTS:Description="Foreach Loop Container"
-      DTS:DTSID="{A3192A00-2655-408A-B530-0EABD0BC06E6}"
-      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:refId="Package\Arrange Execution Arguments"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{DF6B419C-41D7-48AD-825A-FBD26F236998}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Foreach Destination Entity">
-      <DTS:ForEachEnumerator
-        DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-        DTS:DTSID="{AECEB456-8AC8-4896-9C9D-7FCD6B90D299}"
-        DTS:ObjectName="{AECEB456-8AC8-4896-9C9D-7FCD6B90D299}">
-        <DTS:ObjectData>
-          <FEEADO
-            EnumType="EnumerateRowsInFirstTable"
-            VarName="User::DestinationEntityList" />
-        </DTS:ObjectData>
-      </DTS:ForEachEnumerator>
+      DTS:ObjectName="Arrange Execution Arguments"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
       <DTS:Variables />
-      <DTS:Executables>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\Arrange Execution Arguments"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Expression Task"
-          DTS:DTSID="{DF6B419C-41D7-48AD-825A-FBD26F236998}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Arrange Execution Arguments"
-          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <ExpressionTask
-              Expression="@[User::ExecutionArguments]  = &quot;\&quot;&quot; + @[User::ScriptFileName] + &quot;\&quot; &quot; + @[User::ScriptArguments]" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\Assign Get Interpreter Path SQL"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Expression Task"
-          DTS:DTSID="{55BDE602-4328-4262-9938-6C1CBB340920}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Assign Get Interpreter Path SQL"
-          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <ExpressionTask
-              Expression="@[User::SQL_GetInterpreterPath] = @[User::ScriptType] == &quot;R&quot;? @[User::SQL_GetRInterpreterPath] : @[User::ScriptType] == &quot;Python&quot;? @[User::SQL_GetPythonInterpreterPath] : &quot;&quot;" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\Assign Get Script SQL"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Expression Task"
-          DTS:DTSID="{DF0E360B-3B7C-4EBB-937B-3AED91A3B02C}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Assign Get Script SQL"
-          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <ExpressionTask
-              Expression="@[User::SQL_GetScript] =  @[User::ScriptType] == &quot;R&quot; ?  @[User::SQL_GetRScript] :  @[User::ScriptType] == &quot;Python&quot; ?  @[User::SQL_GetPythonScript] : &quot;&quot;" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\Execute Script"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Script Task"
-          DTS:DTSID="{880B7DF4-3F9A-4BAC-8B81-EC0AD4760118}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Execute Script"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <ScriptProject
-              Name="ST_c03f13e51b3e4083bba51d7f8074cac0"
-              VSTAMajorVersion="3"
-              VSTAMinorVersion="0"
-              Language="CSharp"
-              ReadOnlyVariables="User::ExecutionArguments,User::InterpreterPath,User::WorkingDirectory"
-              ReadWriteVariables="User::ExecutionError,User::ExecutionOutput">
-              <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Resources.resx"
-                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::ExecutionArguments]  = &quot;\&quot;&quot; + @[User::ScriptFileName] + &quot;\&quot; &quot; + @[User::ScriptArguments]" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Assign Get Interpreter Path SQL"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{55BDE602-4328-4262-9938-6C1CBB340920}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Assign Get Interpreter Path SQL"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::SQL_GetInterpreterPath] = @[User::ScriptType] == &quot;R&quot;? @[User::SQL_GetRInterpreterPath] : @[User::ScriptType] == &quot;Python&quot;? @[User::SQL_GetPythonInterpreterPath] : &quot;&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Assign Get Script SQL"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{DF0E360B-3B7C-4EBB-937B-3AED91A3B02C}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Assign Get Script SQL"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::SQL_GetScript] =  @[User::ScriptType] == &quot;R&quot; ?  @[User::SQL_GetRScript] :  @[User::ScriptType] == &quot;Python&quot; ?  @[User::SQL_GetPythonScript] : &quot;&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute Script"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Script Task"
+      DTS:DTSID="{880B7DF4-3F9A-4BAC-8B81-EC0AD4760118}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute Script"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_c03f13e51b3e4083bba51d7f8074cac0"
+          VSTAMajorVersion="3"
+          VSTAMinorVersion="0"
+          Language="CSharp"
+          ReadOnlyVariables="User::ExecutionArguments,User::InterpreterPath,User::WorkingDirectory"
+          ReadWriteVariables="User::ExecutionError,User::ExecutionOutput">
+          <ProjectItem
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_c03f13e51b3e4083bba51d7f8074cac0")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_c03f13e51b3e4083bba51d7f8074cac0")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -690,9 +657,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
-              <ProjectItem
-                Name="ST_c03f13e51b3e4083bba51d7f8074cac0.csproj"
-                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+          <ProjectItem
+            Name="ST_c03f13e51b3e4083bba51d7f8074cac0.csproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -776,9 +743,9 @@
     </VisualStudio>
   </ProjectExtensions>
 </Project>]]></ProjectItem>
-              <ProjectItem
-                Name="ScriptMain.cs"
-                Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
+          <ProjectItem
+            Name="ScriptMain.cs"
+            Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
 /* The Script Task allows you to perform virtually any operation that can be accomplished in
  * a .Net application within the context of an Integration Services control flow. 
  * 
@@ -913,9 +880,9 @@ namespace ST_c03f13e51b3e4083bba51d7f8074cac0
 
     }
 }]]></ProjectItem>
-              <ProjectItem
-                Name="Project"
-                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
 		<msb:CodeName>ST_c03f13e51b3e4083bba51d7f8074cac0</msb:CodeName>
@@ -933,9 +900,9 @@ namespace ST_c03f13e51b3e4083bba51d7f8074cac0
 		<msb:File Include="ScriptMain.cs"/>
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
 // <auto-generated>
 //     This code was generated by a tool.
 //
@@ -962,39 +929,18 @@ namespace ST_c03f13e51b3e4083bba51d7f8074cac0.Properties {
         }
     }
 }]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_c03f13e51b3e4083bba51d7f8074cac0")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_c03f13e51b3e4083bba51d7f8074cac0")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Resources.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
 // <auto-generated>
 //     This code was generated by a tool.
 //
@@ -1060,8 +1006,8 @@ namespace ST_c03f13e51b3e4083bba51d7f8074cac0.Properties {
         }
     }
 }]]></ProjectItem>
-              <BinaryItem
-                Name="ST_c03f13e51b3e4083bba51d7f8074cac0.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+          <BinaryItem
+            Name="ST_c03f13e51b3e4083bba51d7f8074cac0.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
 ZGUuDQ0KJAAAAAAAAABQRQAATAEDALESkVgAAAAAAAAAAOAAIiALATAAABIAAAAIAAAAAAAA3jAA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
@@ -1187,30 +1133,39 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
-            </ScriptProject>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\Parse Interpreter Path Result Set"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Script Task"
-          DTS:DTSID="{47AE651D-18E8-4A50-91C6-8FAFF859677C}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Parse Interpreter Path Result Set"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <ScriptProject
-              Name="ST_21ae0d9ff4ed44a59d470f97e1ae3a8f"
-              VSTAMajorVersion="3"
-              VSTAMinorVersion="0"
-              Language="CSharp"
-              ReadOnlyVariables="User::InterpreterPathResultSet"
-              ReadWriteVariables="User::InterpreterPath">
-              <ProjectItem
-                Name="Properties\Resources.resx"
-                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+        </ScriptProject>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Parse Interpreter Path Result Set"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Script Task"
+      DTS:DTSID="{47AE651D-18E8-4A50-91C6-8FAFF859677C}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Parse Interpreter Path Result Set"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_21ae0d9ff4ed44a59d470f97e1ae3a8f"
+          VSTAMajorVersion="3"
+          VSTAMinorVersion="0"
+          Language="CSharp"
+          ReadOnlyVariables="User::InterpreterPathResultSet"
+          ReadWriteVariables="User::InterpreterPath">
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1327,124 +1282,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
-              <ProjectItem
-                Name="ST_21ae0d9ff4ed44a59d470f97e1ae3a8f.csproj"
-                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{FB6F2E34-A19F-47A9-894D-6F988E7BAD74}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ST_21ae0d9ff4ed44a59d470f97e1ae3a8f</RootNamespace>
-    <AssemblyName>ST_21ae0d9ff4ed44a59d470f97e1ae3a8f</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>.\bin\Debug\</OutputPath>
-    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DebugSymbols>false</DebugSymbols>
-    <Optimize>true</Optimize>
-    <OutputPath>.\bin\Release\</OutputPath>
-    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
-  </ItemGroup>
-  <ItemGroup>
-    <AppDesigner Include="Properties\" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="ScriptMain.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <!-- Include the build rules for a C# project.-->
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ProjectExtensions>
-    <VisualStudio>
-      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
-        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" />
-        <Host Name="ScriptTask" />
-        <ProjectClient>
-          <HostIdentifier>SSIS_ST110</HostIdentifier>
-        </ProjectClient>
-      </FlavorProperties>
-    </VisualStudio>
-  </ProjectExtensions>
-</Project>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_21ae0d9ff4ed44a59d470f97e1ae3a8f.Properties.Settings.get_Default():ST_21ae0d9ff4ed44a59d470f97e1ae3a8f.Properties.Sett" +
-    "ings")]
-
-namespace ST_21ae0d9ff4ed44a59d470f97e1ae3a8f.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-              <ProjectItem
-                Name="ScriptMain.cs"
-                Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
+          <ProjectItem
+            Name="ScriptMain.cs"
+            Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
 /* The Script Task allows you to perform virtually any operation that can be accomplished in
  * a .Net application within the context of an Integration Services control flow. 
  * 
@@ -1565,9 +1405,9 @@ namespace ST_21ae0d9ff4ed44a59d470f97e1ae3a8f
 
 	}
 }]]></ProjectItem>
-              <ProjectItem
-                Name="Project"
-                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
 		<msb:CodeName>ST_21ae0d9ff4ed44a59d470f97e1ae3a8f</msb:CodeName>
@@ -1585,9 +1425,124 @@ namespace ST_21ae0d9ff4ed44a59d470f97e1ae3a8f
 		<msb:File Include="ScriptMain.cs"/>
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
+          <ProjectItem
+            Name="ST_21ae0d9ff4ed44a59d470f97e1ae3a8f.csproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FB6F2E34-A19F-47A9-894D-6F988E7BAD74}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ST_21ae0d9ff4ed44a59d470f97e1ae3a8f</RootNamespace>
+    <AssemblyName>ST_21ae0d9ff4ed44a59d470f97e1ae3a8f</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" />
+        <Host Name="ScriptTask" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST110</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_21ae0d9ff4ed44a59d470f97e1ae3a8f.Properties.Settings.get_Default():ST_21ae0d9ff4ed44a59d470f97e1ae3a8f.Properties.Sett" +
+    "ings")]
+
+namespace ST_21ae0d9ff4ed44a59d470f97e1ae3a8f.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
 using System.Runtime.CompilerServices;
 
 //
@@ -1615,18 +1570,9 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Resources.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+          <ProjectItem
+            Name="Properties\Resources.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
 // <auto-generated>
 //     This code was generated by a tool.
 //
@@ -1692,8 +1638,8 @@ namespace ST_21ae0d9ff4ed44a59d470f97e1ae3a8f.Properties {
         }
     }
 }]]></ProjectItem>
-              <BinaryItem
-                Name="ST_21ae0d9ff4ed44a59d470f97e1ae3a8f.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+          <BinaryItem
+            Name="ST_21ae0d9ff4ed44a59d470f97e1ae3a8f.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
 ZGUuDQ0KJAAAAAAAAABQRQAATAEDAPRDDlgAAAAAAAAAAOAAIiALATAAABAAAAAIAAAAAAAA5i4A
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
@@ -1810,31 +1756,40 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
-            </ScriptProject>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\Parse Script Arguments Result Set"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Script Task"
-          DTS:Disabled="True"
-          DTS:DTSID="{8F62F64E-89E9-468D-9EF8-24C1301B4E69}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Parse Script Arguments Result Set"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <ScriptProject
-              Name="ST_842fa8a92ee84b2f98ffac2e7a97b643"
-              VSTAMajorVersion="3"
-              VSTAMinorVersion="0"
-              Language="CSharp"
-              ReadOnlyVariables="User::ScriptArgumentsResultSet"
-              ReadWriteVariables="User::ScriptArguments">
-              <ProjectItem
-                Name="Properties\Resources.resx"
-                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+        </ScriptProject>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Parse Script Arguments Result Set"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Script Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{8F62F64E-89E9-468D-9EF8-24C1301B4E69}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Parse Script Arguments Result Set"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_842fa8a92ee84b2f98ffac2e7a97b643"
+          VSTAMajorVersion="3"
+          VSTAMinorVersion="0"
+          Language="CSharp"
+          ReadOnlyVariables="User::ScriptArgumentsResultSet"
+          ReadWriteVariables="User::ScriptArguments">
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1951,38 +1906,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_cfcbd51d69414a078f906f07711d1f6f.Properties.Settings.get_Default():ST_cfcbd51d69414a078f906f07711d1f6f.Properties.Sett" +
-    "ings")]
-
-namespace ST_cfcbd51d69414a078f906f07711d1f6f.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-              <ProjectItem
-                Name="ScriptMain.cs"
-                Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
+          <ProjectItem
+            Name="ScriptMain.cs"
+            Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
 /* The Script Task allows you to perform virtually any operation that can be accomplished in
  * a .Net application within the context of an Integration Services control flow. 
  * 
@@ -2103,9 +2029,9 @@ namespace ST_cfcbd51d69414a078f906f07711d1f6f
 
 	}
 }]]></ProjectItem>
-              <ProjectItem
-                Name="Project"
-                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
 		<msb:CodeName>ST_842fa8a92ee84b2f98ffac2e7a97b643</msb:CodeName>
@@ -2123,39 +2049,38 @@ namespace ST_cfcbd51d69414a078f906f07711d1f6f
 		<msb:File Include="ScriptMain.cs"/>
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
 
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_cfcbd51d69414a078f906f07711d1f6f")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_cfcbd51d69414a078f906f07711d1f6f")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_cfcbd51d69414a078f906f07711d1f6f.Properties.Settings.get_Default():ST_cfcbd51d69414a078f906f07711d1f6f.Properties.Sett" +
+    "ings")]
 
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-              <ProjectItem
-                Name="ST_842fa8a92ee84b2f98ffac2e7a97b643.csproj"
-                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+namespace ST_cfcbd51d69414a078f906f07711d1f6f.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
+            Name="ST_842fa8a92ee84b2f98ffac2e7a97b643.csproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -2239,18 +2164,39 @@ using System.Runtime.CompilerServices;
     </VisualStudio>
   </ProjectExtensions>
 </Project>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Resources.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+          <ProjectItem
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_cfcbd51d69414a078f906f07711d1f6f")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_cfcbd51d69414a078f906f07711d1f6f")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
 // <auto-generated>
 //     This code was generated by a tool.
 //
@@ -2316,8 +2262,8 @@ namespace ST_cfcbd51d69414a078f906f07711d1f6f.Properties {
         }
     }
 }]]></ProjectItem>
-              <BinaryItem
-                Name="ST_842fa8a92ee84b2f98ffac2e7a97b643.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+          <BinaryItem
+            Name="ST_842fa8a92ee84b2f98ffac2e7a97b643.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
 ZGUuDQ0KJAAAAAAAAABQRQAATAEDAPVDDlgAAAAAAAAAAOAAIiALATAAABAAAAAIAAAAAAAACi8A
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
@@ -2434,30 +2380,39 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
-            </ScriptProject>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\Parse Script Result Set"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Script Task"
-          DTS:DTSID="{F088BC73-CF91-4709-BBD4-038FE860C669}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Parse Script Result Set"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <ScriptProject
-              Name="ST_1c1dbaf5965d4c6db0b07e22c2b03409"
-              VSTAMajorVersion="3"
-              VSTAMinorVersion="0"
-              Language="CSharp"
-              ReadOnlyVariables="User::ScriptResultSet"
-              ReadWriteVariables="User::Script">
-              <ProjectItem
-                Name="Properties\Resources.resx"
-                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+        </ScriptProject>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Parse Script Result Set"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Script Task"
+      DTS:DTSID="{F088BC73-CF91-4709-BBD4-038FE860C669}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Parse Script Result Set"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_1c1dbaf5965d4c6db0b07e22c2b03409"
+          VSTAMajorVersion="3"
+          VSTAMinorVersion="0"
+          Language="CSharp"
+          ReadOnlyVariables="User::ScriptResultSet"
+          ReadWriteVariables="User::Script">
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -2574,38 +2529,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_cfcbd51d69414a078f906f07711d1f6f.Properties.Settings.get_Default():ST_cfcbd51d69414a078f906f07711d1f6f.Properties.Sett" +
-    "ings")]
-
-namespace ST_cfcbd51d69414a078f906f07711d1f6f.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-              <ProjectItem
-                Name="ScriptMain.cs"
-                Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
+          <ProjectItem
+            Name="ScriptMain.cs"
+            Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
 /* The Script Task allows you to perform virtually any operation that can be accomplished in
  * a .Net application within the context of an Integration Services control flow. 
  * 
@@ -2733,9 +2659,9 @@ namespace ST_cfcbd51d69414a078f906f07711d1f6f
 
 	}
 }]]></ProjectItem>
-              <ProjectItem
-                Name="Project"
-                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
 		<msb:Language>msBuild</msb:Language>
@@ -2753,39 +2679,38 @@ namespace ST_cfcbd51d69414a078f906f07711d1f6f
 		<msb:File Include="ScriptMain.cs"/>
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
 
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_cfcbd51d69414a078f906f07711d1f6f")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_cfcbd51d69414a078f906f07711d1f6f")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_cfcbd51d69414a078f906f07711d1f6f.Properties.Settings.get_Default():ST_cfcbd51d69414a078f906f07711d1f6f.Properties.Sett" +
+    "ings")]
 
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-              <ProjectItem
-                Name="ST_1c1dbaf5965d4c6db0b07e22c2b03409.csproj"
-                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+namespace ST_cfcbd51d69414a078f906f07711d1f6f.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
+            Name="ST_1c1dbaf5965d4c6db0b07e22c2b03409.csproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -2869,18 +2794,39 @@ using System.Runtime.CompilerServices;
     </VisualStudio>
   </ProjectExtensions>
 </Project>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Resources.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+          <ProjectItem
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_cfcbd51d69414a078f906f07711d1f6f")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_cfcbd51d69414a078f906f07711d1f6f")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
 // <auto-generated>
 //     This code was generated by a tool.
 //
@@ -2946,8 +2892,8 @@ namespace ST_cfcbd51d69414a078f906f07711d1f6f.Properties {
         }
     }
 }]]></ProjectItem>
-              <BinaryItem
-                Name="ST_1c1dbaf5965d4c6db0b07e22c2b03409.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+          <BinaryItem
+            Name="ST_1c1dbaf5965d4c6db0b07e22c2b03409.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
 ZGUuDQ0KJAAAAAAAAABQRQAATAEDAFQ/GlgAAAAAAAAAAOAAIiALATAAABAAAAAIAAAAAAAAUi8A
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
@@ -3064,288 +3010,345 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
-            </ScriptProject>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\SQL - Get Destination Entity Name"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{0DA5DCED-0B35-4B83-97FA-6DC026CCABB1}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="SQL - Get Destination Entity Name"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
-              SQLTask:SqlStmtSourceType="Variable"
-              SQLTask:SqlStatementSource="User::SQL_GetDestinationEntityName"
-              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-              <SQLTask:ResultBinding
-                SQLTask:ResultName="0"
-                SQLTask:DtsVariableName="User::DestinationEntityName" />
-            </SQLTask:SqlTaskData>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\SQL - Get Interpreter Path Result Set"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{3F04E03E-D4A3-4B89-B7B7-A47C4EAD506A}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="SQL - Get Interpreter Path Result Set"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
-              SQLTask:SqlStmtSourceType="Variable"
-              SQLTask:SqlStatementSource="User::SQL_GetInterpreterPath"
-              SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-              <SQLTask:ResultBinding
-                SQLTask:ResultName="0"
-                SQLTask:DtsVariableName="User::InterpreterPathResultSet" />
-            </SQLTask:SqlTaskData>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\SQL - Get Script Arguments Result Set"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
-          DTS:Disabled="True"
-          DTS:DTSID="{F18339F5-F503-4580-A836-A3BD7FEA74AF}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="SQL - Get Script Arguments Result Set"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
-              SQLTask:SqlStmtSourceType="Variable"
-              SQLTask:SqlStatementSource="User::SQL_GetScriptArguments"
-              SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-              <SQLTask:ResultBinding
-                SQLTask:ResultName="0"
-                SQLTask:DtsVariableName="User::ScriptArgumentsResultSet" />
-            </SQLTask:SqlTaskData>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\SQL - Get Script Function"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
-          DTS:Disabled="True"
-          DTS:DTSID="{14D26A0B-9003-45AE-B3B3-CA410BAA9712}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="SQL - Get Script Function"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
-              SQLTask:SqlStmtSourceType="Variable"
-              SQLTask:SqlStatementSource="User::SQL_GetScriptFunction"
-              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-              <SQLTask:ResultBinding
-                SQLTask:ResultName="AttributeValue"
-                SQLTask:DtsVariableName="User::ScriptFunction" />
-            </SQLTask:SqlTaskData>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\SQL - Get Script Result Set"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{55837E58-4216-44E1-9962-AABE87F32315}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="SQL - Get Script Result Set"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
-              SQLTask:SqlStmtSourceType="Variable"
-              SQLTask:SqlStatementSource="User::SQL_GetScript"
-              SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-              <SQLTask:ResultBinding
-                SQLTask:ResultName="0"
-                SQLTask:DtsVariableName="User::ScriptResultSet" />
-            </SQLTask:SqlTaskData>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\SQL - Get Script Type"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{724DE967-A577-4FB4-93F1-2528F445E7AF}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="SQL - Get Script Type"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
-              SQLTask:SqlStmtSourceType="Variable"
-              SQLTask:SqlStatementSource="User::SQL_GetScriptType"
-              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-              <SQLTask:ResultBinding
-                SQLTask:ResultName="AttributeValue"
-                SQLTask:DtsVariableName="User::ScriptType" />
-            </SQLTask:SqlTaskData>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\SQL - Log External Script Empty"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{687DAF90-DEE3-4C56-A913-871E273620C7}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="SQL - Log External Script Empty"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
-              SQLTask:SqlStmtSourceType="Variable"
-              SQLTask:SqlStatementSource="User::SQL_LogExternalScriptEmpty" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\SQL - Log Interpreter Path Empty"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{4212F05D-0ED1-4E45-A7A1-D1DFAC7D61B7}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="SQL - Log Interpreter Path Empty"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
-              SQLTask:SqlStmtSourceType="Variable"
-              SQLTask:SqlStatementSource="User::SQL_LogInterpreterPathEmpty" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\SQL - Log Script Execution Error"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{1805D1EE-0847-4157-8A72-5378E372D3F6}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="SQL - Log Script Execution Error"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
-              SQLTask:SqlStmtSourceType="Variable"
-              SQLTask:SqlStatementSource="User::SQL_LogExecutionError" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\SQL - Log Script Execution Output"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{1AA2ABD0-7B08-472D-A050-4EB824158E8F}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="SQL - Log Script Execution Output"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
-              SQLTask:SqlStmtSourceType="Variable"
-              SQLTask:SqlStatementSource="User::SQL_LogExecutionOutput" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\SQL - Log Script Function Empty"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
-          DTS:Disabled="True"
-          DTS:DTSID="{586AB5DD-2EA9-4330-A3B1-235C33A471AC}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="SQL - Log Script Function Empty"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
-              SQLTask:SqlStmtSourceType="Variable"
-              SQLTask:SqlStatementSource="User::SQL_LogScriptFunctionEmpty" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\SQL - Log Script Type Empty"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{4BDA0597-5747-4C16-A99C-BC0124560AC8}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="SQL - Log Script Type Empty"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
-              SQLTask:SqlStmtSourceType="Variable"
-              SQLTask:SqlStatementSource="User::SQL_LogExternalScriptTypeEmpty" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Foreach Destination Entity\Write Script to File"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Script Task"
-          DTS:DTSID="{AB2BF13F-8496-4217-9978-B573CBC177A3}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Write Script to File"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <ScriptProject
-              Name="ST_7c7993fceb614a2db077be43a43085a3"
-              VSTAMajorVersion="3"
-              VSTAMinorVersion="0"
-              Language="CSharp"
-              ReadOnlyVariables="User::DestinationEntityName,User::Script,User::ScriptType,$Package::StagingDirectory"
-              ReadWriteVariables="User::ScriptFileName,User::WorkingDirectory">
-              <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Resources.resx"
-                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+        </ScriptProject>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Get Destination Entity Name"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0DA5DCED-0B35-4B83-97FA-6DC026CCABB1}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Get Destination Entity Name"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_GetDestinationEntityName"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::DestinationEntityName" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Get Interpreter Path Result Set"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3F04E03E-D4A3-4B89-B7B7-A47C4EAD506A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Get Interpreter Path Result Set"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_GetInterpreterPath"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::InterpreterPathResultSet" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Get Script Arguments Result Set"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{F18339F5-F503-4580-A836-A3BD7FEA74AF}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Get Script Arguments Result Set"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_GetScriptArguments"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::ScriptArgumentsResultSet" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Get Script Function"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{14D26A0B-9003-45AE-B3B3-CA410BAA9712}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Get Script Function"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_GetScriptFunction"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="AttributeValue"
+            SQLTask:DtsVariableName="User::ScriptFunction" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Get Script Result Set"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{55837E58-4216-44E1-9962-AABE87F32315}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Get Script Result Set"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_GetScript"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::ScriptResultSet" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Get Script Type"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{724DE967-A577-4FB4-93F1-2528F445E7AF}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Get Script Type"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_GetScriptType"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="AttributeValue"
+            SQLTask:DtsVariableName="User::ScriptType" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Log About to Execute Script"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{ba6f3695-9695-4700-a7d1-7635d2b9c8a6}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Log About to Execute Script"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_LogAboutToExecuteScript" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Log External Script Empty"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{687DAF90-DEE3-4C56-A913-871E273620C7}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Log External Script Empty"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_LogExternalScriptEmpty" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Log Interpreter Path Empty"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4212F05D-0ED1-4E45-A7A1-D1DFAC7D61B7}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Log Interpreter Path Empty"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_LogInterpreterPathEmpty" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Log Script Execution Error"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1805D1EE-0847-4157-8A72-5378E372D3F6}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Log Script Execution Error"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="5">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_LogExecutionError" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Log Script Execution Output"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1AA2ABD0-7B08-472D-A050-4EB824158E8F}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Log Script Execution Output"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_LogExecutionOutput" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Log Script Function Empty"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{586AB5DD-2EA9-4330-A3B1-235C33A471AC}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Log Script Function Empty"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_LogScriptFunctionEmpty" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Log Script Type Empty"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4BDA0597-5747-4C16-A99C-BC0124560AC8}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Log Script Type Empty"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_LogExternalScriptTypeEmpty" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Log Script Type Not Empty"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{d1f7fe01-5845-4a8e-974e-041522cdb7c0}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Log Script Type Not Empty"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_LogScriptTypeNotEmpty" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Write Script to File"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Script Task"
+      DTS:DTSID="{AB2BF13F-8496-4217-9978-B573CBC177A3}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Write Script to File"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_7c7993fceb614a2db077be43a43085a3"
+          VSTAMajorVersion="3"
+          VSTAMinorVersion="0"
+          Language="CSharp"
+          ReadOnlyVariables="User::DestinationEntityName,User::Script,User::ScriptType,$Package::StagingDirectory"
+          ReadWriteVariables="User::ScriptFileName,User::WorkingDirectory">
+          <ProjectItem
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_7c7993fceb614a2db077be43a43085a3")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_7c7993fceb614a2db077be43a43085a3")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -3462,9 +3465,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
-              <ProjectItem
-                Name="ScriptMain.cs"
-                Encoding="UTF8"><![CDATA[
+          <ProjectItem
+            Name="ScriptMain.cs"
+            Encoding="UTF8"><![CDATA[
 #region Help:  Introduction to the script task
 /* The Script Task allows you to perform virtually any operation that can be accomplished in
  * a .Net application within the context of an Integration Services control flow. 
@@ -3615,9 +3618,9 @@ namespace ST_7c7993fceb614a2db077be43a43085a3
 
     }
 }]]></ProjectItem>
-              <ProjectItem
-                Name="ST_7c7993fceb614a2db077be43a43085a3.csproj"
-                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+          <ProjectItem
+            Name="ST_7c7993fceb614a2db077be43a43085a3.csproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -3701,9 +3704,9 @@ namespace ST_7c7993fceb614a2db077be43a43085a3
     </VisualStudio>
   </ProjectExtensions>
 </Project>]]></ProjectItem>
-              <ProjectItem
-                Name="Project"
-                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
 		<msb:Language>msBuild</msb:Language>
@@ -3721,9 +3724,9 @@ namespace ST_7c7993fceb614a2db077be43a43085a3
 		<msb:File Include="ScriptMain.cs"/>
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
 // <auto-generated>
 //     This code was generated by a tool.
 //
@@ -3750,39 +3753,18 @@ namespace ST_7c7993fceb614a2db077be43a43085a3.Properties {
         }
     }
 }]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_7c7993fceb614a2db077be43a43085a3")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_7c7993fceb614a2db077be43a43085a3")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Resources.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
 // <auto-generated>
 //     This code was generated by a tool.
 //
@@ -3848,8 +3830,8 @@ namespace ST_7c7993fceb614a2db077be43a43085a3.Properties {
         }
     }
 }]]></ProjectItem>
-              <BinaryItem
-                Name="ST_7c7993fceb614a2db077be43a43085a3.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+          <BinaryItem
+            Name="ST_7c7993fceb614a2db077be43a43085a3.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
 ZGUuDQ0KJAAAAAAAAABQRQAATAEDAP7RD1gAAAAAAAAAAOAAIiALATAAABIAAAAIAAAAAAAAWjEA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
@@ -3975,260 +3957,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
-            </ScriptProject>
-          </DTS:ObjectData>
-        </DTS:Executable>
-      </DTS:Executables>
-      <DTS:PrecedenceConstraints>
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint]"
-          DTS:CreationName=""
-          DTS:DTSID="{B4979C4A-EF17-4B32-93FC-BC64FA60C8C9}"
-          DTS:From="Package\Foreach Destination Entity\SQL - Get Destination Entity Name"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint"
-          DTS:To="Package\Foreach Destination Entity\Assign Get Interpreter Path SQL" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 1]"
-          DTS:CreationName=""
-          DTS:Description="Script type is Python or R"
-          DTS:DTSID="{FB036A3A-2795-43F9-846B-23FC23C127B2}"
-          DTS:EvalOp="3"
-          DTS:Expression="@[User::ScriptType] != &quot;&quot;"
-          DTS:From="Package\Foreach Destination Entity\SQL - Get Script Type"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 1"
-          DTS:To="Package\Foreach Destination Entity\SQL - Get Destination Entity Name" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 11]"
-          DTS:CreationName=""
-          DTS:DTSID="{0C842256-725B-49C2-84CB-5E3E2A4BEA08}"
-          DTS:From="Package\Foreach Destination Entity\Assign Get Interpreter Path SQL"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 11"
-          DTS:To="Package\Foreach Destination Entity\SQL - Get Interpreter Path Result Set" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 12]"
-          DTS:CreationName=""
-          DTS:DTSID="{41DF7124-C7EC-444D-B9D3-153967308086}"
-          DTS:From="Package\Foreach Destination Entity\SQL - Get Interpreter Path Result Set"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 12"
-          DTS:To="Package\Foreach Destination Entity\Parse Interpreter Path Result Set" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 13]"
-          DTS:CreationName=""
-          DTS:Description="Interpreter path is not empty"
-          DTS:DTSID="{5ADF686A-C194-4E47-B25E-9411B74F61A4}"
-          DTS:EvalOp="3"
-          DTS:Expression="@[User::InterpreterPath] != &quot;&quot;"
-          DTS:From="Package\Foreach Destination Entity\Parse Interpreter Path Result Set"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 13"
-          DTS:To="Package\Foreach Destination Entity\SQL - Get Script Function" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 14]"
-          DTS:CreationName=""
-          DTS:DTSID="{FB56533C-11C2-49F4-BE56-4477456E9395}"
-          DTS:Expression="@[User::ScriptFunction] != &quot;&quot;"
-          DTS:From="Package\Foreach Destination Entity\SQL - Get Script Function"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 14"
-          DTS:To="Package\Foreach Destination Entity\Assign Get Script SQL" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 15]"
-          DTS:CreationName=""
-          DTS:DTSID="{7B59EEDD-82AA-4B83-A961-C069DA8602E1}"
-          DTS:From="Package\Foreach Destination Entity\Assign Get Script SQL"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 15"
-          DTS:To="Package\Foreach Destination Entity\SQL - Get Script Result Set" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 16]"
-          DTS:CreationName=""
-          DTS:Description="Script type is empty"
-          DTS:DTSID="{9AEF26DD-3A7D-4FA0-BA66-F7A08E7E8352}"
-          DTS:EvalOp="3"
-          DTS:Expression="@[User::ScriptType] == &quot;&quot;"
-          DTS:From="Package\Foreach Destination Entity\SQL - Get Script Type"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 16"
-          DTS:To="Package\Foreach Destination Entity\SQL - Log Script Type Empty" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 18]"
-          DTS:CreationName=""
-          DTS:Description="Interpreter path is empty"
-          DTS:DTSID="{7309A26A-0D76-4A1C-89E5-1F87A35E03FB}"
-          DTS:EvalOp="3"
-          DTS:Expression="@[User::InterpreterPath] == &quot;&quot;"
-          DTS:From="Package\Foreach Destination Entity\Parse Interpreter Path Result Set"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 18"
-          DTS:To="Package\Foreach Destination Entity\SQL - Log Interpreter Path Empty" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 19]"
-          DTS:CreationName=""
-          DTS:Description="Script function is empty"
-          DTS:DTSID="{39CD76AC-DCFE-48C8-A53F-C882EDE5D181}"
-          DTS:EvalOp="3"
-          DTS:Expression="@[User::ScriptFunction] == &quot;&quot;"
-          DTS:From="Package\Foreach Destination Entity\SQL - Get Script Function"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 19"
-          DTS:To="Package\Foreach Destination Entity\SQL - Log Script Function Empty" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 2]"
-          DTS:CreationName=""
-          DTS:DTSID="{BA06F69D-393F-4CA1-BD26-0A0527DD4992}"
-          DTS:From="Package\Foreach Destination Entity\SQL - Get Script Result Set"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 2"
-          DTS:To="Package\Foreach Destination Entity\Parse Script Result Set" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 20]"
-          DTS:CreationName=""
-          DTS:Description="Script is empty"
-          DTS:DTSID="{B45D8287-7B0D-47BD-9EC4-55E3DD1CA964}"
-          DTS:EvalOp="3"
-          DTS:Expression="@[User::Script] == &quot;&quot;"
-          DTS:From="Package\Foreach Destination Entity\Parse Script Result Set"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 20"
-          DTS:To="Package\Foreach Destination Entity\SQL - Log External Script Empty" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 3]"
-          DTS:CreationName=""
-          DTS:Description="Script is not empty"
-          DTS:DTSID="{8C161507-85E0-4693-A0EA-DCE8CAC7859C}"
-          DTS:EvalOp="1"
-          DTS:Expression="@[User::Script] != &quot;&quot;"
-          DTS:From="Package\Foreach Destination Entity\Parse Script Result Set"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 3"
-          DTS:To="Package\Foreach Destination Entity\Write Script to File" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 4]"
-          DTS:CreationName=""
-          DTS:DTSID="{D6EF6774-AA1D-4645-872A-E832DB4B7227}"
-          DTS:From="Package\Foreach Destination Entity\Write Script to File"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 4"
-          DTS:To="Package\Foreach Destination Entity\SQL - Get Script Arguments Result Set" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 5]"
-          DTS:CreationName=""
-          DTS:DTSID="{79DB6CB8-E1DA-4F0F-9FDA-AD38E8F0C4B9}"
-          DTS:From="Package\Foreach Destination Entity\SQL - Get Script Arguments Result Set"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 5"
-          DTS:To="Package\Foreach Destination Entity\Parse Script Arguments Result Set" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 6]"
-          DTS:CreationName=""
-          DTS:DTSID="{479E576C-D811-418F-88EB-ED57C0C45BBC}"
-          DTS:From="Package\Foreach Destination Entity\Parse Script Arguments Result Set"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 6"
-          DTS:To="Package\Foreach Destination Entity\Arrange Execution Arguments" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 7]"
-          DTS:CreationName=""
-          DTS:DTSID="{44A42BAE-B89E-4611-8388-B5187053104D}"
-          DTS:From="Package\Foreach Destination Entity\Arrange Execution Arguments"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 7"
-          DTS:To="Package\Foreach Destination Entity\Execute Script" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 8]"
-          DTS:CreationName=""
-          DTS:Description="Has error output"
-          DTS:DTSID="{D7A095E6-D713-41D8-89D0-FBE9BFDCC64C}"
-          DTS:EvalOp="3"
-          DTS:Expression="@[User::ExecutionError] != &quot;&quot;"
-          DTS:From="Package\Foreach Destination Entity\Execute Script"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 8"
-          DTS:To="Package\Foreach Destination Entity\SQL - Log Script Execution Error" />
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 9]"
-          DTS:CreationName=""
-          DTS:Description="Has execution output"
-          DTS:DTSID="{91CBF71C-551B-44F9-BEB5-FF440A84AAE8}"
-          DTS:EvalOp="3"
-          DTS:Expression="@[User::ExecutionOutput] != &quot;&quot;"
-          DTS:From="Package\Foreach Destination Entity\Execute Script"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Constraint 9"
-          DTS:To="Package\Foreach Destination Entity\SQL - Log Script Execution Output" />
-      </DTS:PrecedenceConstraints>
-      <DTS:ForEachVariableMappings>
-        <DTS:ForEachVariableMapping
-          DTS:CreationName=""
-          DTS:DTSID="{FE223345-55A3-412C-BF46-C2E110FD9427}"
-          DTS:ObjectName="{FE223345-55A3-412C-BF46-C2E110FD9427}"
-          DTS:ValueIndex="0"
-          DTS:VariableName="User::DestinationEntityID" />
-      </DTS:ForEachVariableMappings>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\SQL - Get Destination Entity List"
-      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{176DF387-4479-4A43-A760-D77DB20F7C97}"
-      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="SQL - Get Destination Entity List"
-      DTS:ThreadHint="1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
-          SQLTask:SqlStmtSourceType="Variable"
-          SQLTask:SqlStatementSource="User::SQL_GetDestinationEntityList"
-          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-          <SQLTask:ResultBinding
-            SQLTask:ResultName="0"
-            SQLTask:DtsVariableName="User::DestinationEntityList" />
-        </SQLTask:SqlTaskData>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\SQL - Get Source Entity Name"
-      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{8A946114-D44F-4E70-B2F6-518C666F545D}"
-      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="SQL - Get Source Entity Name"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
-          SQLTask:SqlStmtSourceType="Variable"
-          SQLTask:SqlStatementSource="User::SQL_GetSourceEntityName"
-          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-          <SQLTask:ResultBinding
-            SQLTask:ResultName="0"
-            SQLTask:DtsVariableName="User::SourceEntityName" />
-        </SQLTask:SqlTaskData>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\SQL - Log Source Entity Name Empty"
-      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{8B2FB5B9-4629-4A28-9703-47A000726057}"
-      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="SQL - Log Source Entity Name Empty"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{F716E0AF-A7E8-4A79-807F-BA359226BC62}"
-          SQLTask:SqlStmtSourceType="Variable"
-          SQLTask:SqlStatementSource="User::SQL_LogSourceEntityNameEmpty" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+        </ScriptProject>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -4236,32 +3965,198 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:Description="Source entity name is empty"
-      DTS:DTSID="{7525E4F9-D5D6-4C6B-99B6-2CDB363F9BBB}"
-      DTS:EvalOp="3"
-      DTS:Expression="@[User::SourceEntityName] == &quot;&quot;"
-      DTS:From="Package\SQL - Get Source Entity Name"
+      DTS:DTSID="{B4979C4A-EF17-4B32-93FC-BC64FA60C8C9}"
+      DTS:From="Package\SQL - Get Destination Entity Name"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\SQL - Log Source Entity Name Empty" />
+      DTS:To="Package\Assign Get Interpreter Path SQL" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{0C000BF2-3F08-4078-87F6-6A3E62139D3B}"
+      DTS:DTSID="{40FBB0B6-8DB0-48BF-BDBB-6B8874022643}"
       DTS:EvalOp="3"
-      DTS:Expression="@[User::SourceEntityName] != &quot;&quot;"
-      DTS:From="Package\SQL - Get Source Entity Name"
+      DTS:Expression="@[User::ScriptType] != &quot;&quot;"
+      DTS:From="Package\SQL - Get Script Type"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
-      DTS:To="Package\SQL - Get Destination Entity List" />
+      DTS:To="Package\SQL - Log Script Type Not Empty" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{8DFF5A7A-D644-43BA-9ED7-2ACF1DD6B136}"
+      DTS:From="Package\SQL - Log Script Type Not Empty"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\SQL - Get Destination Entity Name" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{0C842256-725B-49C2-84CB-5E3E2A4BEA08}"
+      DTS:From="Package\Assign Get Interpreter Path SQL"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\SQL - Get Interpreter Path Result Set" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{41DF7124-C7EC-444D-B9D3-153967308086}"
+      DTS:From="Package\SQL - Get Interpreter Path Result Set"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 12"
+      DTS:To="Package\Parse Interpreter Path Result Set" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
+      DTS:CreationName=""
+      DTS:Description="Interpreter path is not empty"
+      DTS:DTSID="{5ADF686A-C194-4E47-B25E-9411B74F61A4}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::InterpreterPath] != &quot;&quot;"
+      DTS:From="Package\Parse Interpreter Path Result Set"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 13"
+      DTS:To="Package\SQL - Get Script Function" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 14]"
+      DTS:CreationName=""
+      DTS:DTSID="{FB56533C-11C2-49F4-BE56-4477456E9395}"
+      DTS:Expression="@[User::ScriptFunction] != &quot;&quot;"
+      DTS:From="Package\SQL - Get Script Function"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 14"
+      DTS:To="Package\Assign Get Script SQL" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 15]"
+      DTS:CreationName=""
+      DTS:DTSID="{7B59EEDD-82AA-4B83-A961-C069DA8602E1}"
+      DTS:From="Package\Assign Get Script SQL"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 15"
+      DTS:To="Package\SQL - Get Script Result Set" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 16]"
+      DTS:CreationName=""
+      DTS:Description="Script type is empty"
+      DTS:DTSID="{9AEF26DD-3A7D-4FA0-BA66-F7A08E7E8352}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::ScriptType] == &quot;&quot;"
+      DTS:From="Package\SQL - Get Script Type"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 16"
+      DTS:To="Package\SQL - Log Script Type Empty" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 17]"
+      DTS:CreationName=""
+      DTS:DTSID="{5DEE3B95-DE2D-42C9-8E35-05E1B76AC8CE}"
+      DTS:From="Package\SQL - Log About to Execute Script"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 17"
+      DTS:To="Package\Execute Script" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 18]"
+      DTS:CreationName=""
+      DTS:Description="Interpreter path is empty"
+      DTS:DTSID="{7309A26A-0D76-4A1C-89E5-1F87A35E03FB}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::InterpreterPath] == &quot;&quot;"
+      DTS:From="Package\Parse Interpreter Path Result Set"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 18"
+      DTS:To="Package\SQL - Log Interpreter Path Empty" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 19]"
+      DTS:CreationName=""
+      DTS:Description="Script function is empty"
+      DTS:DTSID="{39CD76AC-DCFE-48C8-A53F-C882EDE5D181}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::ScriptFunction] == &quot;&quot;"
+      DTS:From="Package\SQL - Get Script Function"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 19"
+      DTS:To="Package\SQL - Log Script Function Empty" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{4B1984C0-5749-44E0-8A4F-C239C16E2E84}"
-      DTS:From="Package\SQL - Get Destination Entity List"
+      DTS:DTSID="{BA06F69D-393F-4CA1-BD26-0A0527DD4992}"
+      DTS:From="Package\SQL - Get Script Result Set"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Foreach Destination Entity" />
+      DTS:To="Package\Parse Script Result Set" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 20]"
+      DTS:CreationName=""
+      DTS:Description="Script is empty"
+      DTS:DTSID="{B45D8287-7B0D-47BD-9EC4-55E3DD1CA964}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::Script] == &quot;&quot;"
+      DTS:From="Package\Parse Script Result Set"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 20"
+      DTS:To="Package\SQL - Log External Script Empty" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:Description="Script is not empty"
+      DTS:DTSID="{8C161507-85E0-4693-A0EA-DCE8CAC7859C}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[User::Script] != &quot;&quot;"
+      DTS:From="Package\Parse Script Result Set"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Write Script to File" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{D6EF6774-AA1D-4645-872A-E832DB4B7227}"
+      DTS:From="Package\Write Script to File"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\SQL - Get Script Arguments Result Set" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{79DB6CB8-E1DA-4F0F-9FDA-AD38E8F0C4B9}"
+      DTS:From="Package\SQL - Get Script Arguments Result Set"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Parse Script Arguments Result Set" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{479E576C-D811-418F-88EB-ED57C0C45BBC}"
+      DTS:From="Package\Parse Script Arguments Result Set"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Arrange Execution Arguments" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{3CAC9969-7E71-40B3-90BE-4953231CAC91}"
+      DTS:From="Package\Arrange Execution Arguments"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\SQL - Log About to Execute Script" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:Description="Has error output"
+      DTS:DTSID="{D7A095E6-D713-41D8-89D0-FBE9BFDCC64C}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::ExecutionError] != &quot;&quot;"
+      DTS:From="Package\Execute Script"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\SQL - Log Script Execution Error" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:Description="Has execution output"
+      DTS:DTSID="{91CBF71C-551B-44F9-BEB5-FF440A84AAE8}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::ExecutionOutput] != &quot;&quot;"
+      DTS:From="Package\Execute Script"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\SQL - Log Script Execution Output" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -4276,134 +4171,70 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <GraphLayout
         Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\Arrange Execution Arguments"
-          TopLeft="76.3571636822761,1268.53529647708" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\Assign Get Interpreter Path SQL"
-          TopLeft="76.3571636822761,252.535296477084" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\Assign Get Script SQL"
-          TopLeft="76.3571636822761,658.935296477083" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\Execute Script"
-          TopLeft="76.3571636822761,1370.13529647708" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\Parse Interpreter Path Result Set"
-          TopLeft="76.3571636822761,455.735296477084" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\Parse Script Arguments Result Set"
-          TopLeft="76.3571636822761,1166.93529647708" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\Parse Script Result Set"
-          TopLeft="76.3571636822761,862.13529647708" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\SQL - Get Destination Entity Name"
-          TopLeft="74.2857363953891,148.235298956637" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\SQL - Get Interpreter Path Result Set"
-          TopLeft="76.3571636822761,354.135296477084" />
-        <NodeLayout
-          Size="259,43"
-          Id="Package\Foreach Destination Entity\SQL - Get Script Arguments Result Set"
-          TopLeft="76.928592263437,1065.33529647708" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\SQL - Get Script Function"
-          TopLeft="76.928592263437,557.335296477084" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\SQL - Get Script Result Set"
-          TopLeft="76.3571636822761,760.535296477083" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\SQL - Get Script Type"
-          TopLeft="71.2143064518369,39.735293122394" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\SQL - Log External Script Empty"
-          TopLeft="456.285742526152,859.20000510496" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\SQL - Log Interpreter Path Empty"
-          TopLeft="469.428599892831,455.764710232296" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\SQL - Log Script Execution Error"
-          TopLeft="431.271452286779,1372.46470833616" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\SQL - Log Script Execution Output"
-          TopLeft="76.7000207764771,1476.62941419278" />
-        <NodeLayout
-          Size="231,42"
-          Id="Package\Foreach Destination Entity\SQL - Log Script Function Empty"
-          TopLeft="463.714314081232,555.482358689622" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\SQL - Log Script Type Empty"
-          TopLeft="458.000028269632,36.70588534728" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Foreach Destination Entity\Write Script to File"
-          TopLeft="76.3571636822761,963.73529647708" />
+          Size="259.2,41.6"
+          Id="Package\SQL - Get Script Type"
+          TopLeft="127.557160616895,121.899511673865" />
         <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint]"
-          TopLeft="204.921450038833,189.835298956637">
+          Id="Package.PrecedenceConstraints[Constraint 16]"
+          TopLeft="386.757160616895,142.102454858">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,62.6999975204471"
+              EndConnector="123.014293168516,0"
               Start="0,0"
-              End="0,55.1999975204471">
+              End="115.514293168516,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,55.1999975204471" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 1]"
-          TopLeft="202.350021423612,81.335293122393">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,66.9000058342431"
-              Start="0,0"
-              End="0,59.4000058342431">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,59.4000058342431" />
+                    End="115.514293168516,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-65.63359375,21.7000029171215,131.2671875,16"
+              BoundingBox="4.42156064675795,5,106.671171875,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="259.2,41.6"
+          Id="Package\SQL - Log Script Type Empty"
+          TopLeft="509.771453785411,120.705398042135" />
+        <NodeLayout
+          Size="241.6,41.6"
+          Id="Package\SQL - Get Destination Entity Name"
+          TopLeft="140.342876440166,286.070106524162" />
         <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 11]"
-          TopLeft="205.957163682276,294.135296477084">
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="262.86430430607,327.670106524162">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.2999973745898"
+              Start="0,0"
+              End="0,44.7999973745898">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.7999973745898" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="259.2,41.6"
+          Id="Package\Assign Get Interpreter Path SQL"
+          TopLeft="134.985732171974,379.970103898751" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="264.585732171974,421.570103898763">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -4423,9 +4254,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="259.2,41.6"
+          Id="Package\SQL - Get Interpreter Path Result Set"
+          TopLeft="134.985732171974,481.570103898764" />
         <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 12]"
-          TopLeft="205.957163682276,395.735296477084">
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="264.585732171974,523.170103898753">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -4445,20 +4280,24 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="259.2,41.6"
+          Id="Package\Parse Interpreter Path Result Set"
+          TopLeft="134.985732171974,583.170103898746" />
         <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 13]"
-          TopLeft="206.242877972856,497.335296477084">
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="264.871446462554,624.77010389875">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60.0000000000001"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,52.5000000000001">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5000000000001" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4470,76 +4309,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 14]"
-          TopLeft="206.242877972856,598.935296477084">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999989"
-              Start="0,0"
-              End="0,52.4999999999989">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999989" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 15]"
-          TopLeft="205.957163682276,700.535296477083">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 16]"
-          TopLeft="330.414306451836,59.020589234837">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="127.585721817795,0"
-              Start="0,0"
-              End="120.085721817795,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="120.085721817795,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="6.70727497139752,5,106.671171875,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 18]"
-          TopLeft="335.557163682277,476.55000335469">
+          Id="Package.PrecedenceConstraints[Constraint 18]"
+          TopLeft="394.185732171975,603.984810776362">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -4557,13 +4328,43 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-2.02486783222253,5,130.421171875,16"
+              BoundingBox="-2.02486783222258,5,130.421171875,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="259.2,41.6"
+          Id="Package\SQL - Log Interpreter Path Empty"
+          TopLeft="528.057168382529,583.199517653958" />
+        <NodeLayout
+          Size="259.2,41.6"
+          Id="Package\SQL - Get Script Function"
+          TopLeft="135.557160753135,684.77010389875" />
         <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 19]"
-          TopLeft="336.128592263437,577.208827583353">
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="264.871446462554,726.370103898736">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 19]"
+          TopLeft="394.757160753135,704.643635005006">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -4581,24 +4382,32 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-1.53272502860248,5,123.151171875,16"
+              BoundingBox="-1.53272502860253,5,123.151171875,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="231.2,41.6"
+          Id="Package\SQL - Log Script Function Empty"
+          TopLeft="522.34288257093,682.917166111284" />
+        <NodeLayout
+          Size="259.2,41.6"
+          Id="Package\Assign Get Script SQL"
+          TopLeft="134.985732171974,786.370103898739" />
         <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 2]"
-          TopLeft="205.957163682276,802.13529647708">
+          Id="Package.PrecedenceConstraints[Constraint 15]"
+          TopLeft="264.585732171974,827.970103898736">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60.0000000000002"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,52.5000000000002">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5000000000002" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4607,9 +4416,39 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="259.2,41.6"
+          Id="Package\SQL - Get Script Result Set"
+          TopLeft="134.985732171974,887.970103898733" />
         <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 20]"
-          TopLeft="335.557163682277,881.46765079102">
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="264.585732171974,929.570103898721">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="259.2,41.6"
+          Id="Package\Parse Script Result Set"
+          TopLeft="134.985732171974,989.570103898704" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 20]"
+          TopLeft="394.185732171975,1008.90245821265">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -4627,263 +4466,270 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="14.398703484438,5,84.431171875,16"
+              BoundingBox="14.3987034844379,5,84.431171875,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 3]"
-          TopLeft="205.957163682276,903.73529647708">
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="264.585732171974,1031.17010389871">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="0,59.9999999999982"
               Start="0,0"
-              End="0,52.5">
+              End="0,52.4999999999982">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,52.4999999999982" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-50.9555859375,18.25,101.911171875,16"
+              BoundingBox="-50.9555859375,18.2499999999991,101.911171875,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 4]"
-          TopLeft="206.242877972856,1005.33529647708">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 5]"
-          TopLeft="206.242877972856,1108.53529647708">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,58.4000000000012"
-              Start="0,0"
-              End="0,50.9000000000012">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,50.9000000000012" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 6]"
-          TopLeft="205.957163682276,1208.53529647708">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 7]"
-          TopLeft="205.957163682276,1310.13529647708">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 8]"
-          TopLeft="335.557163682276,1392.10000240662">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="95.7142886045029,0"
-              Start="0,0"
-              End="88.2142886045029,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="88.2142886045029,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-1.89289476024853,5,92.000078125,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 9]"
-          TopLeft="206.128592229377,1411.73529647708">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,64.8941177157001"
-              Start="0,0"
-              End="0,57.3941177157001">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,57.3941177157001" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-56.4050390625,20.69705885785,112.810078125,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="856,1657"
-          Size="856,1700"
-          Id="Package\Foreach Destination Entity"
-          TopLeft="231.428575369777,249.294124425076" />
         <NodeLayout
-          Size="261,42"
-          Id="Package\SQL - Get Destination Entity List"
-          TopLeft="300.623375048663,181.043140252101" />
+          Size="259.2,41.6"
+          Id="Package\SQL - Log External Script Empty"
+          TopLeft="514.91431101585,986.634812526581" />
         <NodeLayout
-          Size="261,42"
-          Id="Package\SQL - Get Source Entity Name"
-          TopLeft="294.701319591898,93.5479538787843" />
-        <NodeLayout
-          Size="261,42"
-          Id="Package\SQL - Log Source Entity Name Empty"
-          TopLeft="698.040824973553,87.7187660378193" />
+          Size="259.2,41.6"
+          Id="Package\Write Script to File"
+          TopLeft="134.985732171974,1091.17010389871" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="555.501319591898,111.433359958302">
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="264.871446462554,1132.7701038987">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="142.539505381655,0"
+              EndConnector="0,60"
               Start="0,0"
-              End="135.039505381655,0">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="135.039505381655,0" />
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="259.2,43.2"
+          Id="Package\SQL - Get Script Arguments Result Set"
+          TopLeft="135.557160753135,1192.7701038987" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="264.871446462554,1235.97010389871">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58.4000000000015"
+              Start="0,0"
+              End="0,50.9000000000015">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.9000000000015" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="259.2,41.6"
+          Id="Package\Parse Script Arguments Result Set"
+          TopLeft="134.985732171974,1294.3701038987" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="264.585732171974,1335.9701038987">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="259.2,41.6"
+          Id="Package\Arrange Execution Arguments"
+          TopLeft="134.985732171974,1395.9701038987" />
+        <NodeLayout
+          Size="259.2,41.6"
+          Id="Package\Execute Script"
+          TopLeft="144.128589470533,1531.21716319412" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="403.328589470533,1554.09951619535">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87.1428598871038,0"
+              Start="0,0"
+              End="79.6428598871038,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="79.6428598871038,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-5.02083324667252,5,145.081171875,16"
+              BoundingBox="-6.17860911894811,5,92.000078125,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="269.900017949514,1572.81716319412">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68.5647060024698"
+              Start="0,0"
+              End="0,61.0647060024698">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.0647060024698" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-56.4050390625,22.5323530012349,112.810078125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="259.2,41.6"
+          Id="Package\SQL - Log Script Execution Error"
+          TopLeft="490.471449357637,1535.38186919659" />
+        <NodeLayout
+          Size="259.2,41.6"
+          Id="Package\SQL - Log Script Execution Output"
+          TopLeft="136.471446428495,1641.38186919659" />
+        <NodeLayout
+          Size="233.6,41.6"
+          Id="Package\SQL - Log Script Type Not Empty"
+          TopLeft="136.571430897226,204.329414630349" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="428.06234732028,135.147953878784">
+          TopLeft="255.26429575706,163.499511673865">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,45.8951863733167"
+              EndConnector="0,40.8299029564837"
               Start="0,0"
-              End="0,38.3951863733167">
+              End="0,33.3299029564837">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.3951863733167" />
+                    End="0,33.3299029564837" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-8,11.1975931866584,16,16"
+              BoundingBox="-8,8.66495147824185,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="431.023375048663,222.643140252101">
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="257.257153668696,245.929414630349">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="228.405200321114,26.650984172975"
+              EndConnector="0,40.1406918938128"
               Start="0,0"
-              End="228.405200321114,19.150984172975">
+              End="0,32.6406918938128">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,9.3254920864875" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,9.3254920864875"
-                    Point2="0,13.3254920864875"
-                    Point3="4,13.3254920864875" />
+                    End="0,32.6406918938128" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="238.4,41.6"
+          Id="Package\SQL - Log About to Execute Script"
+          TopLeft="153.271446769092,1463.40539468739" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="268.528589470533,1437.5701038987">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25.8352907886904"
+              Start="0,0"
+              End="0,18.3352907886904">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="224.405200321114,13.3254920864875" />
-                  <mssgle:CubicBezierSegment
-                    Point1="224.405200321114,13.3254920864875"
-                    Point2="228.405200321114,13.3254920864875"
-                    Point3="228.405200321114,17.3254920864875" />
+                    End="0,18.3352907886904" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 17]"
+          TopLeft="273.100018119813,1505.00539468739">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26.2117685067205"
+              Start="0,0"
+              End="0,18.7117685067205">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="228.405200321114,19.150984172975" />
+                    End="0,18.7117685067205" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4896,47 +4742,39 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     </LayoutInfo>
   </Package>
   <PrecedenceConstraint
-    design-time-name="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 1]">
+    design-time-name="Package.PrecedenceConstraints[Constraint 13]">
     <ShowAnnotation>ConstraintDescription</ShowAnnotation>
   </PrecedenceConstraint>
   <PrecedenceConstraint
-    design-time-name="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 13]">
+    design-time-name="Package.PrecedenceConstraints[Constraint 14]">
     <ShowAnnotation>ConstraintDescription</ShowAnnotation>
   </PrecedenceConstraint>
   <PrecedenceConstraint
-    design-time-name="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 14]">
+    design-time-name="Package.PrecedenceConstraints[Constraint 16]">
     <ShowAnnotation>ConstraintDescription</ShowAnnotation>
   </PrecedenceConstraint>
   <PrecedenceConstraint
-    design-time-name="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 16]">
+    design-time-name="Package.PrecedenceConstraints[Constraint 18]">
     <ShowAnnotation>ConstraintDescription</ShowAnnotation>
   </PrecedenceConstraint>
   <PrecedenceConstraint
-    design-time-name="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 18]">
+    design-time-name="Package.PrecedenceConstraints[Constraint 19]">
     <ShowAnnotation>ConstraintDescription</ShowAnnotation>
   </PrecedenceConstraint>
   <PrecedenceConstraint
-    design-time-name="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 19]">
+    design-time-name="Package.PrecedenceConstraints[Constraint 20]">
     <ShowAnnotation>ConstraintDescription</ShowAnnotation>
   </PrecedenceConstraint>
   <PrecedenceConstraint
-    design-time-name="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 20]">
+    design-time-name="Package.PrecedenceConstraints[Constraint 3]">
     <ShowAnnotation>ConstraintDescription</ShowAnnotation>
   </PrecedenceConstraint>
   <PrecedenceConstraint
-    design-time-name="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 3]">
+    design-time-name="Package.PrecedenceConstraints[Constraint 8]">
     <ShowAnnotation>ConstraintDescription</ShowAnnotation>
   </PrecedenceConstraint>
   <PrecedenceConstraint
-    design-time-name="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 8]">
-    <ShowAnnotation>ConstraintDescription</ShowAnnotation>
-  </PrecedenceConstraint>
-  <PrecedenceConstraint
-    design-time-name="Package\Foreach Destination Entity.PrecedenceConstraints[Constraint 9]">
-    <ShowAnnotation>ConstraintDescription</ShowAnnotation>
-  </PrecedenceConstraint>
-  <PrecedenceConstraint
-    design-time-name="Package.PrecedenceConstraints[Constraint]">
+    design-time-name="Package.PrecedenceConstraints[Constraint 9]">
     <ShowAnnotation>ConstraintDescription</ShowAnnotation>
   </PrecedenceConstraint>
 </Objects>]]></DTS:DesignTimeProperties>
