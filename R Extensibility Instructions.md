@@ -68,7 +68,7 @@ Due to the complexity of the extensibility process, **verifying this now avoids 
 ## Installing the Extensibility Packages From an ISPAC File
 The following steps are for the .ispac installation wizard.
 
-1. [Download](https://github.com/justin-page/SSIS/blob/c49d38584d4b523c9d5788f2a36980acd3b8812e/ExternalScriptExtensibility.ispac?raw=true), unzip, and open the .ispac file
+1. [Download](https://github.com/HealthCatalyst/SSIS/blob/master/ExternalScriptExtensibility.ispac?raw=true), unzip, and open the .ispac file
 
 2. Select `Project Deployment File` (Note: you can ignore warning about XML node)
 ![](images/SSIS_installation/SSIS_installation_1_project_deploy.png)
