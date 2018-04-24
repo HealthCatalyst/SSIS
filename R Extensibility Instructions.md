@@ -43,8 +43,8 @@ The `.rda` or `.rds` files contain the model logic. Starting with healthcareai v
 
 1. Verify that that packages you depend on are installed correctly on the ETL server. Recall that versioning must be the same as when the model was trained.
     1. Run RGui as administrator
-    2. Check that your packages are installed via `library(healthcareai)`
-    3. If these need to be installed, type `install.packages('healthcareai')`
+    2. Check that your packages are installed via `library(packagename)`
+    3. If these need to be installed, type `install.packages('packagename')`
     4. Verify that these are _not_ installed in a personal folder by looking for them in `C:\Program Files\R\R-3.4.4\library`
       - If struggling with personal directories, check out the `lib` argument [here](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/install.packages.html)
       - If you need an **old version** of healthcareai see [here](https://github.com/HealthCatalyst/healthcareai-r/releases) for version numbers and install using this code and a specific version number:
