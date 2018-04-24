@@ -4,9 +4,8 @@
 - [Installing the Extensibility Packages](#installing-the-extensibility-packages-from-an-ispac-file)
 - [Permissions and Configuration](#permissions-and-configuration)
 - [Define Attributes in EDWAdmin](#define-attributes-in-edwadmin)
-- [Repeatable Steps For Each Data Mart](#repeatable-steps-for-each-data-mart)
+- [Repeatable Steps For Each Data Mart](#create-an-extensibility-point-for-each-data-mart)
 - [Repeatable Steps For Each Destination Entity](#repeatable-steps-for-each-destination-entity)
-
 
 ## Overview
 This document instructs the user how to integrate their designated R scripts into the Catalyst loaders. It begins by testing the R script, and then installing the required SSIS package and defining new system level attributes. It continues by injecting the new SSIS package into the designated loader step. It concludes by defining the necessary variables for each destination entity. This extensibility point exists to solve the following problems/constraints:
