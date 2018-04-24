@@ -191,9 +191,7 @@ library(methods) # required if using healthcare.ai <v2.0, along with any other l
 Some deployment best practices for your *R script* (which will be inserted into SQL Server):
 
 1. Use functions from packages, if possible. Long R scripts are extremely hard to debug
-2. Outside of your R script's SQL query, switch to double quotes (`""`) instead of single quotes (`''`). *Why?*
-    - Helps with insertion into database
-    - Is [recommended](https://stackoverflow.com/a/20572492) by R community
+2. Outside of your R script's SQL query, switch to [double quotes](https://stackoverflow.com/a/20572492) (`""`) instead of single quotes (`''`).
     - *Note:* if you need single quotes, before inserting into EDWAdmin, escape them by [using two single quotes](https://stackoverflow.com/a/1586588), like (`''Bob''`)
 
 Once modified, copy the example into the SQL template below, so it is stored _in_ the `ExternalRScript` field in ObjectAttributeBASE
