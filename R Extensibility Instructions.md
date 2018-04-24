@@ -47,7 +47,12 @@ The `.rda` or `.rds` files contain the model logic. Starting with healthcareai v
     3. If these need to be installed, type `install.packages('healthcareai')`
     4. Verify that these are _not_ installed in a personal folder by looking for them in `C:\Program Files\R\R-3.4.4\library`
       - If struggling with personal directories, check out the `lib` argument [here](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/install.packages.html)
-      - If you need an **old version** of healthcareai see [here](https://github.com/HealthCatalyst/healthcareai-r/releases) for downloads and use this install syntax: `install.packages(<pathtopackage>, repos = NULL, type="source")`
+      - If you need an **old version** of healthcareai see [here](https://github.com/HealthCatalyst/healthcareai-r/releases) for version numbers and install using this code and a specific version number:
+      ```
+      install.packages('remotes')
+      library(remotes)
+      remotes::install_github("HealthCatalyst/healthcareai-r@v1.2.4")
+      ```
 
 2. Verify your R script runs in RGui on the ETL Server (i.e., you can push predictions to the desired table)
 
