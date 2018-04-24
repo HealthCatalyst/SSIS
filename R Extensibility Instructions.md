@@ -150,7 +150,7 @@ Seed `EDWAdmin.CatalystAdmin.ETLEngineConfigurationBASE` with these values. SQL 
 | **RequiredParametersTXT**           | `BatchID, TableID`                                                                       |
 | **FailsBatchFLG**                   | `1`                                                                                      |
 
-Note: to get proper visibility into failures, RunInAsyncModeFLG and FailsBatchFLG **must** be set as specified.
+Note: to get proper visibility into failures, `RunInAsyncModeFLG` and `FailsBatchFLG` **must** be set as specified.
 
 The following SQL template needs only a single adjustment of the *DataMartID* before running. This is the DataMartID associated with the SAM where extensibility is being configured.
 
