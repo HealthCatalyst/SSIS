@@ -237,7 +237,7 @@ If you haven't already, follow these steps in Subject Area Mart Designer (SAMD) 
 
 - Think of the R script as the SAM binding and the output table as the SAM entity. The _source_ entity for the extensibility point should be the entity that serves as the dataset the R scripts pulls from. The _destination_ entity for the extensibility point should be the entity that the R script populates/outputs to
 
-- Verify that the output **incremental** binding/entity is set up and tracked in metadata via [these instructions](https://docs.healthcare.ai/articles/site_only/deploy_model.html#inside-a-health-catalyst-environment).
+- Verify that the **incremental** binding/entity that's tied to R is set up and tracked in metadata via [these instructions](https://docs.healthcare.ai/articles/site_only/deploy_model.html#inside-a-health-catalyst-environment).
   - This initial metadata entry is essential to being able to reference the R output table in other SAM bindings
   - Create a binding (and entity) in the SAM to handle additional transformation of the model output, if desired. This might include limiting predictions to the most recent predictions that we appended to the output table
 
