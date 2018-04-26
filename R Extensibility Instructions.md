@@ -56,16 +56,6 @@ The `.rda` or `.rds` files contain the model logic. Starting with healthcareai v
 
 2. Verify your R script runs in RGui on the ETL Server (i.e., you can push predictions to the desired table)
 
-3. Check that the R.exe **folder** has been added to path
-    1. Open PowerShell and see if the R.exe **folder** is in your PATH by typing `R.exe`
-    2. If R cannot be found, add it to the **system** path via [these instructions](http://www.itprotoday.com/management-mobility/how-can-i-add-new-folder-my-system-path); note: this might be `C:\Program Files\R\R-3.4.4\bin`      
-    3. Reopen PowerShell and see that `R` starts without errors by typing `R.exe`
-
-4. Test your script in PowerShell
-   1. Test your script using `Rscript <PATH\YOUR_SCRIPT_NAME>` and make sure that predictions are inserted into the database
-   2. Verify that a log was created in the folder where your script lives
-   3. To ease future debugging, delete the logs that were created in the directory where your script lives
-
 Before installing the extensibility points, please verify that the user's R scripts run standalone on the desired machine.
 Due to the complexity of the extensibility process, **verifying this now avoids confusion later and reduces debugging time.** Only then should a user proceed to set up the extensibility points.
 
@@ -98,7 +88,7 @@ The following steps are for the .ispac installation wizard.
    2. Select `Security` -> `Edit`
    3. Add read, write, and execute permissions to the EDW_Loader account that you identified above
 3. Set permissions for SSIS packages installed above. To find existing extensibility points look in: SSMS > Integration Services Catalog > SSISDB > CatalystExtensibility > Projects
-    1. Refer to the ETL User Guide for your version of DOS (off of the Catalyst intranet).
+    1. Refer to the ETL User Guide for your version of DOS (see [Requirements](https://github.com/HealthCatalyst/SSIS/blob/master/R%20Extensibility%20Instructions.md#requirements) above).
     2. Look for `Extensibility` chapter and the section called `Set up permissions for SSIS packages`
     3. Follow instructions to verify permission to allow the `EDW loader` user account to execute.
     4. Don't forget to `enable proper permissions for the SSIS Database`
