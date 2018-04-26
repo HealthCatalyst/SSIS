@@ -13,9 +13,9 @@ This document instructs the user how to integrate their designated R scripts int
 - This extensibility point takes an R script stored in a field in the EDW, writes it to a file in the staging folder, executes that file with the correct interpreter, and cleans the file up.
 - The extensibility point also coordinates bindings within SAMD so that predictions occur in the right order with other SAMs.
 
-## Requirements
+## Install Requirements
 
-- DOS v4.0 or above
+- DOS v4.0 or or 4.2
 - Permissions are needed to 
   - Write EDWAdmin inserts via SQL
   - To install an SSIS package
@@ -23,7 +23,7 @@ This document instructs the user how to integrate their designated R scripts int
 - You have successfully created an output table and pushed prediction to the SAM database via the vignette [here](https://docs.healthcare.ai/articles/site_only/deploy_model.html)
 - You know which version of R and healthcareai your model was trained on. Can verify on the workstation in R via
 `library(healthcareai)` and then `sessionInfo()`
-- This same version of R is installed on the ETL server. See [here](https://cran.r-project.org/bin/windows/base/) for latest download and  [here](https://cran.r-project.org/bin/windows/base/old/) for older versions. Please make sure this isn't a user-specific install
+- This same version of R used for development is installed on the ETL server. See [here](https://cran.r-project.org/bin/windows/base/) for latest download and  [here](https://cran.r-project.org/bin/windows/base/old/) for older versions. Please make sure this isn't a user-specific install
 - You've downloaded the DOS ETL User Guide. See [here](https://community.healthcatalyst.com/docs/DOC-2096) for 4.0 and [here](https://community.healthcatalyst.com/docs/DOC-2674) for 4.2
 
 ## Pre-extensibility checks
