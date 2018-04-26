@@ -5,9 +5,9 @@ These tools enable ML in the HC platform by setting up extensibility points that
 ## Data Flow Process
 
 1. A SAM binding refreshes table A.
-2. A separate SAM binding, dependant on table A, hosts the extensibility point.
-  - This extensibility point runs the ML which reads from Table A.
-  - This ML file pushes predictions to table B.
+2. A subsequent SAM binding, dependant on table A, hosts the extensibility point.
+    - This extensibility point runs the R file which reads from Table A.
+    - Since this R file pushes predictions to table B, the SQL query for B just creates the column structure
 
 ## Requirements before starting
 
