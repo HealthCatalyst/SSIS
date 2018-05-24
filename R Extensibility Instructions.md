@@ -33,11 +33,11 @@ This document instructs the user how to integrate their designated R scripts int
 Establish local folder on the ETL server. This is the working directory that the user script will run in. *Ideally, have the client DBA configure it as a shared folder that the analyst (i.e., model developer) can read and write to.* The following must be in the shared folder that is local to the ETL server. After deploying, the R script will actually run from a cell in EDWAdmin. This is a placeholder for the file while you're testing. Note: the person who trained the model will have to help in identifying these:
 
   - R script that contains the deploy code. Example: `heart_failure_v1_deploy.R`
-  - 2 rda model files that were generated when training. Examples:
+  - Model files that were generated when training. Examples:
     - `heart_failure_v1_rmodel_info_RF.rda`
     - `heart_failure_v1_rmodel_probability.rds`
   
-The `.rda` or `.rds` files contain the model logic. Starting with healthcareai v2.0, only one rds is used. You can check healthcareai version via `sessionInfo()` in R
+The `.rda`, `.rds`, or `.RData` files contain the model logic. Starting with healthcareai v2.0, only one rds is used. You can check healthcareai version via `sessionInfo()` in R
 
 ### R Script and Package Verification Process
 
@@ -192,7 +192,7 @@ Once modified, copy the example into the SQL template below, so it is stored _in
     |             Column             |                                Value                                |
     | ------------------------------ | ------------------------------------------------------------------- |
     | **ExternalScriptType**         | `R`                                                                 |
-    | **ExternalRScript**            | {entire contents of the R script example with only double quotes}   |
+    | **ExternalRScript**            | {entire contents of the R script}   |
     | **RInterpreterPath**           | `C:\Program Files\R\R-3.X.X\Rscript.exe`                            |
    
 ```sql
