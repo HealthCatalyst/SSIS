@@ -187,7 +187,7 @@ Some deployment best practices for your *R script* (which will be inserted into 
 
 Once modified, copy the example into the SQL template below, so it is stored _in_ the `ExternalRScript` field in ObjectAttributeBASE
 
-  - Seed the following new destination entity attribute values into `EDWAdmin.CatalystAdmin.ObjectAttributeBASE` using the SQL template below. Be sure to adjust the values of the TableID ( = **Destination** Entity of R output), as well as R.exe path and RScript.
+  - Seed the following new destination entity attribute values into `EDWAdmin.CatalystAdmin.ObjectAttributeBASE` using the SQL template below. Be sure to adjust the values of the TableID ( = Entity feeding R), as well as R.exe path and RScript. Please do this for both TableID and EntityID.
 
     |             Column             |                                Value                                |
     | ------------------------------ | ------------------------------------------------------------------- |
@@ -227,9 +227,10 @@ If you haven't already, follow these steps in Subject Area Mart Designer (SAMD) 
 
 - Think of the R script as the SAM binding and the output table as the SAM entity. The _source_ entity for the extensibility point should be the entity that serves as the dataset the R scripts pulls from. The _destination_ entity for the extensibility point should be the entity that the R script populates/outputs to
 
-- Verify that the **incremental** binding/entity that's tied to R is set up and tracked in metadata via [these instructions](https://docs.healthcare.ai/articles/site_only/deploy_model.html#inside-a-health-catalyst-environment).
+- Verify that the R output bindind/entity is set up and tracked in metadata via [these instructions](https://docs.healthcare.ai/articles/site_only/deploy_model.html#inside-a-health-catalyst-environment).
   - This initial metadata entry is essential to being able to reference the R output table in other SAM bindings
   - Create a binding (and entity) in the SAM to handle additional transformation of the model output, if desired. This might include limiting predictions to the most recent predictions that we appended to the output table
+  - Marking this R output binding `Inactive` helps you avoid the risk of truncation
 
 ## Verify that your Extensibility point is working
 1. If it doesn't harm ongoing ETL, in [EDW Console](http://127.0.0.1/Atlas) create a SAMD batch to run the binding that the R script depends on (and turn on diagnostic logging).
