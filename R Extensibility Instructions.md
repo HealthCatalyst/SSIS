@@ -270,3 +270,5 @@ At this point, when you run your SAM, your R script should run the model and app
   GRANT SELECT ON internal.operations TO [HQCATALYST\edw_loader];
   GO
   ```
+
+- If you notice abnormal changes in ObjectAttributeBASE, you may not have tied your ObjectAttributes to both the TableID _and_ EntityID that feed R.
