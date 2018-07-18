@@ -8,7 +8,7 @@
 - [Repeatable Steps For Each Destination Entity](#repeatable-steps-for-each-destination-entity)
 
 ## Overview
-This document instructs the user how to integrate their designated R scripts into the Catalyst loaders. It begins by testing the R script, and then installing the required SSIS package and defining new system level attributes. It continues by injecting the new SSIS package into the designated loader step. It concludes by defining the necessary variables for each destination entity. This extensibility point exists to solve the following problems/constraints:
+This document instructs the user how to integrate their designated R scripts into the Catalyst loaders. It begins by testing the R script, and then installing the required SSIS package and defining new system level attributes. It continues by injecting the new SSIS package into the designated loader step. It concludes by defining the necessary variables for each R source entity. This extensibility point exists to solve the following problems/constraints:
 
 - This extensibility point takes an R script stored in a field in the EDW, writes it to a file in the staging folder, executes that file with the correct interpreter, and cleans the file up.
 - The extensibility point also coordinates bindings within SAMD so that predictions occur in the right order with other SAMs.
@@ -187,7 +187,7 @@ Some deployment best practices for your *R script* (which will be inserted into 
 
 Once modified, copy the example into the SQL template below, so it is stored _in_ the `ExternalRScript` field in ObjectAttributeBASE
 
-  - Seed the following new destination entity attribute values into `EDWAdmin.CatalystAdmin.ObjectAttributeBASE` using the SQL template below. Be sure to adjust the values of the TableID ( = Entity feeding R), as well as R.exe path and RScript. Please do this for both TableID and EntityID.
+  - Seed the following new R source entity attribute values into `EDWAdmin.CatalystAdmin.ObjectAttributeBASE` using the SQL template below. Be sure to adjust the values of the TableID ( = Entity feeding R), as well as R.exe path and RScript. Please do this for both TableID and EntityID.
 
     |             Column             |                                Value                                |
     | ------------------------------ | ------------------------------------------------------------------- |
