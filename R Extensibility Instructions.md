@@ -155,7 +155,7 @@ INSERT INTO EDWAdmin.CatalystAdmin.ETLEngineConfigurationBASE
 ) 
 VALUES 
 (
-    'OnPostStageToProdLoad', <DATA_MART_ID>, '\SSISDB\CatalystExtensibility\ExternalScriptExtensibility\ExternalScriptExecution.dtsx', 
+    'OnPostStageToProdLoad', <DATA_MART_ID>, '\SSISDB\CatalystExtensions\ExternalScriptExtensibility\ExternalScriptExecution.dtsx', 
     1, 'Health Catalyst', 0, 0, 1, 1, 'BatchID, TableID', 1
 )
 
